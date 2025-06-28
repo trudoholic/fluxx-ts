@@ -9,11 +9,11 @@ const useGame = () => {
   } = state as IState
 
   const incCount = (n: number) => {
-    dispatch!({type: Actions.SetCount, payload: count + n})
+    dispatch({type: Actions.SetCount, payload: count + n})
   }
 
   const decCount = (n: number) => {
-    dispatch!({type: Actions.SetCount, payload: count - n})
+    dispatch({type: Actions.SetCount, payload: count - n})
   }
 
   return {

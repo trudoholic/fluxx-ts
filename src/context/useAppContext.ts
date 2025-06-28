@@ -4,8 +4,8 @@ import {type IState, defaultState} from "./state"
 
 export const AppContext = createContext<{
   state: IState
-  dispatch?: Dispatch<TAction>
-}>({state: defaultState})
+  dispatch: Dispatch<TAction>
+}>({state: defaultState, dispatch: () => null})
 
 const useAppContext = () => useContext(AppContext)
 
