@@ -1,3 +1,4 @@
+import {Button, Heading, HStack} from "@chakra-ui/react"
 import useGame from "../hooks/useGame"
 
 const Main = () => {
@@ -9,17 +10,23 @@ const Main = () => {
 
   return (
     <>
-      <div className="card">
-        <button onClick={() => incCount(1)}>
+      <HStack>
+        <Button
+          colorPalette={"orange"}
+          onClick={() => decCount(1)}
+        >
+          &ndash;
+        </Button>
+        <Button
+          colorPalette={"orange"}
+          onClick={() => incCount(1)}
+        >
           +
-        </button>
-        <button onClick={() => decCount(1)}>
-          -
-        </button>
-        <p>
+        </Button>
+        <Heading as="h1">
           count is {count}
-        </p>
-      </div>
+        </Heading>
+      </HStack>
     </>
   )
 }

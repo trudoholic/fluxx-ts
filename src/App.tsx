@@ -1,6 +1,6 @@
 import ContextProvider from "./context"
 
-import Layout from "./Layout"
+import Layout from "./components/Layout"
 
 function App() {
   return (
