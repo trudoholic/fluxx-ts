@@ -1,3 +1,4 @@
+import './App.css'
 import ContextProvider from "./context"
 
 import Layout from "./components/Layout"
