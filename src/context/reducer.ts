@@ -1,7 +1,6 @@
-import { type IState } from "./state"
+import {type IState} from "./state"
 
 export const Actions = {
-  Null: 'Null',
   SetCount: 'SetCount',
 } as const
 
