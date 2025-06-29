@@ -11,7 +11,7 @@ export type TAction =
 export const reducer = (state: IState, action: TAction): IState => {
   switch (action.type) {
 
-    case 'SetCount': {
+    case Actions.SetCount: {
       return { ...state, count: action.payload }
     }
     default: {
