@@ -1,5 +1,5 @@
 import useAppContext from "../context/useAppContext"
-import {Actions} from "../context/actions"
+import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
 
 const useGame = () => {
