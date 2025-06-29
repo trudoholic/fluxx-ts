@@ -1,12 +1,8 @@
-import { type IState } from "./state"
-
-export const Actions = {
-  Null: 'Null',
-  SetCount: 'SetCount',
-} as const
+import {type IState} from "./state"
+import {Actions} from "./actions"
 
 export type TAction =
-  | { type: 'SetCount', payload: number }
+  | { type: Actions.SetCount, payload: number }
 
 export const reducer = (state: IState, action: TAction): IState => {
   switch (action.type) {
