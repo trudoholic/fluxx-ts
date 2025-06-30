@@ -1,18 +1,18 @@
-import {ChakraProvider, defaultSystem, Container} from "@chakra-ui/react"
-import {blueGrey} from "./colors"
+import {ChakraProvider, defaultSystem, Box} from "@chakra-ui/react"
+// import {blueGrey} from "./colors"
 
 import Main from "./Main"
 
 function Layout() {
   return (
     <ChakraProvider value={defaultSystem}>
-      <Container
+      <Box
         color={"white"}
-        bg={blueGrey[500]}
-        p={4}
+        bg={"green.900"}
+        w="dvw" h="dvh" p={4}
       >
         <Main/>
-      </Container>
+      </Box>
     </ChakraProvider>
   )
 }
