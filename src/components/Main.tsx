@@ -1,17 +1,17 @@
-import {Button, Heading, HStack} from "@chakra-ui/react"
+import {Button, Heading, HStack, Separator} from "@chakra-ui/react"
 import {RiArrowLeftSFill, RiArrowRightSFill} from "react-icons/ri"
 import useGame from "../hooks/useGame"
 
 const Main = () => {
   const {
-    count,
-    incCount,
-    decCount,
+    gameState, testGameState,
+    phase, testPhase,
+    count, incCount, decCount,
   } = useGame()
 
   return (
     <>
-      <HStack>
+      <HStack m={2}>
         <Button
           colorPalette={"orange"}
           onClick={() => decCount(1)}
@@ -22,6 +22,24 @@ const Main = () => {
         ><RiArrowRightSFill /></Button>
         <Heading as="h1">
           count is {count}
+        </Heading>
+      </HStack>
+      <Separator width="100%" borderColor={'green.800'} />
+      <HStack m={2}>
+        <Button
+          colorPalette={"green"}
+          onClick={() => testGameState()}
+        ><RiArrowLeftSFill /></Button>
+        <Heading as="h1">
+          game state: {gameState}
+        </Heading>
+
+        <Button
+          colorPalette={"green"}
+          onClick={() => testPhase()}
+        ><RiArrowRightSFill /></Button>
+        <Heading as="h1">
+          phase: {phase}
         </Heading>
       </HStack>
     </>
