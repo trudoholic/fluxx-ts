@@ -1,7 +1,9 @@
 export const GameState = {
+  Intro: "Intro",
+  Main: "Main",
+  Outro: "Outro",
   Begin: "Begin",
   End: "End",
-  Main: "Main",
   Over: "Over",
 } as const
 

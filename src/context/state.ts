@@ -10,7 +10,7 @@ export interface IState {
 }
 
 export const defaultState: IState = {
-  gameState: GameState.Over,
+  gameState: GameState.Intro,
   phase: Phase.Main,
   count: 0,
 }

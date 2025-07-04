@@ -1,6 +1,8 @@
 import {Button, Heading, HStack, Separator} from "@chakra-ui/react"
 import {RiArrowLeftSFill, RiArrowRightSFill} from "react-icons/ri"
+import {GameState} from "../data/game"
 import useGame from "../hooks/useGame"
+
 import PageIntro from "./PageIntro"
 import PageMain from "./PageMain"
 import PageOutro from "./PageOutro"
@@ -47,9 +49,15 @@ const Main = () => {
         </Heading>
       </HStack>
       <Separator width="100%" borderColor={'green.800'} />
-      <PageIntro />
-      <PageMain />
-      <PageOutro />
+      {
+        GameState.Intro === gameState? (
+          <PageIntro />
+        ): GameState.Main === gameState? (
+          <PageMain />
+        ): GameState.Outro === gameState? (
+          <PageOutro />
+        ): null
+      }
     </>
   )
 }

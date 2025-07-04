@@ -3,7 +3,7 @@ import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
 
 import {
-  GameState,
+  type TGameState, GameState,
   Phase,
 } from "../data/game"
 
@@ -23,6 +23,10 @@ const useGame = () => {
     dispatch({type: Actions.SetCount, payload: count - n})
   }
 
+  const setGameState = (gameState: TGameState) => {
+    dispatch({type: Actions.SetGameState, payload: gameState})
+  }
+
   const testGameState = () => {
     dispatch({type: Actions.SetGameState, payload: GameState.Begin})
   }
@@ -32,7 +36,7 @@ const useGame = () => {
   }
 
   return {
-    gameState, testGameState,
+    gameState, testGameState, setGameState,
     phase, testPhase,
     count, incCount, decCount,
   }
