@@ -10,12 +10,10 @@ export const GameState = {
 export type TGameState = typeof GameState[keyof typeof GameState]
 
 export const Phase = {
-  Begin: "Begin",
-  Combat: "Combat",
-  End: "End",
-  Fix: "Fix",
-  Main: "Main",
-  Target: "Target",
+  Draw: "Draw",
+  Play: "Play",
+  Hand: "Hand",
+  Keep: "Keep",
 } as const
 
 export type TPhase = typeof Phase[keyof typeof Phase]

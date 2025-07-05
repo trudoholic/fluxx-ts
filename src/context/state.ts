@@ -11,6 +11,6 @@ export interface IState {
 
 export const defaultState: IState = {
   gameState: GameState.Intro,
-  phase: Phase.Main,
+  phase: Phase.Draw,
   count: 0,
 }
