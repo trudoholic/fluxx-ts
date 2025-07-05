@@ -6,7 +6,7 @@ import useGame from "../hooks/useGame"
 const PhaseDraw = () => {
   const {
     phase, setPhase,
-    count, incCount, decCount,
+    cntDraw, ruleDraw, setCntDraw, bDraw,
   } = useGame()
 
   return (
@@ -26,14 +26,14 @@ const PhaseDraw = () => {
       <HStack m={2}>
         <Button
           colorPalette={"orange"}
-          onClick={() => decCount(1)}
+          onClick={() => setCntDraw(cntDraw - 1)}
         ><RiArrowLeftSFill /></Button>
         <Button
           colorPalette={"orange"}
-          onClick={() => incCount(1)}
+          onClick={() => setCntDraw(cntDraw + 1)}
         ><RiArrowRightSFill /></Button>
         <Heading as="h1">
-          count is {count}
+          Draw: {cntDraw} : {ruleDraw} : {bDraw? '': '*'}
         </Heading>
       </HStack>
     </>

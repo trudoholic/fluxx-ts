@@ -6,7 +6,7 @@ import useGame from "../hooks/useGame"
 const PhasePlay = () => {
   const {
     phase, setPhase,
-    count, incCount, decCount,
+    cntPlay, rulePlay, setCntPlay, bPlay,
   } = useGame()
 
   return (
@@ -26,14 +26,14 @@ const PhasePlay = () => {
       <HStack m={2}>
         <Button
           colorPalette={"orange"}
-          onClick={() => decCount(1)}
+          onClick={() => setCntPlay(cntPlay - 1)}
         ><RiArrowLeftSFill /></Button>
         <Button
           colorPalette={"orange"}
-          onClick={() => incCount(1)}
+          onClick={() => setCntPlay(cntPlay + 1)}
         ><RiArrowRightSFill /></Button>
         <Heading as="h1">
-          count is {count}
+          Play: {cntPlay} : {rulePlay} : {bPlay? '': '*'}
         </Heading>
       </HStack>
     </>
