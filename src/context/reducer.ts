@@ -10,6 +10,7 @@ export const Actions = {
   SetCntDraw: 'SetCntDraw',
   SetCntPlay: 'SetCntPlay',
   SetCount: 'SetCount',
+  SetPlayers: 'SetPlayers',
 } as const
 
 export type TAction =
@@ -18,6 +19,7 @@ export type TAction =
   | { type: 'SetCntDraw', payload: number }
   | { type: 'SetCntPlay', payload: number }
   | { type: 'SetCount', payload: number }
+  | { type: 'SetPlayers', payload: number[] }
 
 export const reducer = (state: IState, action: TAction): IState => {
   switch (action.type) {
@@ -36,6 +38,9 @@ export const reducer = (state: IState, action: TAction): IState => {
     }
     case Actions.SetCount: {
       return { ...state, count: action.payload }
+    }
+    case Actions.SetPlayers: {
+      return { ...state, nPlayers: action.payload.length, players: action.payload }
     }
     default: {
       return state

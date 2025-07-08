@@ -1,14 +1,15 @@
 import {Button, Heading, HStack, Separator, StackSeparator} from "@chakra-ui/react"
 import {RiArrowRightSFill} from "react-icons/ri"
-import {GameState, Phase} from "../data/game"
+import {Phase} from "../data/game"
 import useGame from "../hooks/useGame"
 import PhaseDraw from "./PhaseDraw"
 import PhasePlay from "./PhasePlay"
 
 const PageMain = () => {
   const {
-    gameState, setGameState,
+    gameOutro,
     phase,
+    players,
   } = useGame()
 
   return (
@@ -16,10 +17,10 @@ const PageMain = () => {
       <HStack m={2} separator={<StackSeparator />}>
         <Button
           colorPalette={"green"}
-          onClick={() => setGameState(GameState.Outro)}
+          onClick={() => gameOutro()}
         ><RiArrowRightSFill /></Button>
         <Heading as="h1">
-          Page Main: {gameState}
+          Players: {players.join(':')}
         </Heading>
       </HStack>
       {/*---*/}

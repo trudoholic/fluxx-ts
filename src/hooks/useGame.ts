@@ -3,19 +3,35 @@ import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
 
 import {
-  type TGameState, type TPhase,
+  GameState, type TPhase, range,
 } from "../data/game"
 
 const useGame = () => {
   const { state, dispatch } = useAppContext()
   const {
-    gameState, phase,
+    gameState,
+    phase,
     cntDraw, ruleDraw,
     cntPlay, rulePlay,
     count,
+    players,
   } = state as IState
 
   // ACTIONS
+
+  const gameBegin = (n: number) => {
+    dispatch({type: Actions.SetPlayers, payload: range(n)})
+    dispatch({type: Actions.SetGameState, payload: GameState.Main})
+  }
+
+  const gameEnd = () => {
+    dispatch({type: Actions.SetPlayers, payload: []})
+    dispatch({type: Actions.SetGameState, payload: GameState.Intro})
+  }
+
+  const gameOutro = () => {
+    dispatch({type: Actions.SetGameState, payload: GameState.Outro})
+  }
 
   const incCount = (n: number) => {
     dispatch({type: Actions.SetCount, payload: count + n})
@@ -33,10 +49,6 @@ const useGame = () => {
     dispatch({type: Actions.SetCntPlay, payload: n})
   }
 
-  const setGameState = (gameState: TGameState) => {
-    dispatch({type: Actions.SetGameState, payload: gameState})
-  }
-
   const setPhase = (phase: TPhase) => {
     dispatch({type: Actions.SetPhase, payload: phase})
   }
@@ -47,11 +59,13 @@ const useGame = () => {
   const bPlay = cntPlay < rulePlay
 
   return {
-    gameState, setGameState,
+    gameState,
     phase, setPhase,
     cntDraw, ruleDraw, setCntDraw, bDraw,
     cntPlay, rulePlay, setCntPlay, bPlay,
     count, incCount, decCount,
+    gameBegin, gameEnd, gameOutro,
+    players,
   }
 }
 

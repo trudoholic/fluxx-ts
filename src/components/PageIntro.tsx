@@ -1,23 +1,29 @@
 import {Button, Heading, HStack} from "@chakra-ui/react"
-import {RiArrowRightSFill} from "react-icons/ri"
 import useGame from "../hooks/useGame"
-import {GameState} from "../data/game"
 
 const PageIntro = () => {
   const {
-    gameState, setGameState,
+    gameBegin,
   } = useGame()
 
   return (
     <>
       <HStack m={2}>
+        <Heading as="h1">
+          Begin game:
+        </Heading>
         <Button
           colorPalette={"green"}
-          onClick={() => setGameState(GameState.Main)}
-        ><RiArrowRightSFill /></Button>
-        <Heading as="h1">
-          Page Intro: {gameState}
-        </Heading>
+          onClick={() => gameBegin(2)}
+        >2</Button>
+        <Button
+          colorPalette={"green"}
+          onClick={() => gameBegin(3)}
+        >3</Button>
+        <Button
+          colorPalette={"green"}
+          onClick={() => gameBegin(4)}
+        >4</Button>
       </HStack>
     </>
   )

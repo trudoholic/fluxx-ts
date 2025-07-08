@@ -9,6 +9,8 @@ export interface IState {
   cntDraw: number
   cntPlay: number
   count: number
+  nPlayers: number
+  players: number[]
   ruleDraw: number
   rulePlay: number
 }
@@ -19,6 +21,8 @@ export const defaultState: IState = {
   cntDraw: 0,
   cntPlay: 0,
   count: 0,
+  nPlayers: 0,
+  players: [],
   ruleDraw: 3,
   rulePlay: 3,
 }

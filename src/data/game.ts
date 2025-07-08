@@ -17,3 +17,5 @@ export const Phase = {
 } as const
 
 export type TPhase = typeof Phase[keyof typeof Phase]
+
+export const range = (n: number) => Array.from(Array(n).keys())
