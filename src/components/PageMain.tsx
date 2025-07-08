@@ -9,10 +9,9 @@ const PageMain = () => {
   const {
     gameOutro,
     phase,
-    players,
+    players, bHand,
+    eldestHand,
   } = useGame()
-
-  const rnd = Math.floor(Math.random() * players.length)
 
   return (
     <>
@@ -22,13 +21,13 @@ const PageMain = () => {
           onClick={() => gameOutro()}
         ><RiArrowRightSFill /></Button>
         <Heading as="h1">
-          Players: {rnd + 1}
+          Players: {eldestHand + 1}
         </Heading>
         {
           players.map(p => (
             <Center
               key={p.id} w="80px" h="40px" color="white" rounded="md"
-              bg={rnd + 1 === p.id? "green.500": "green.700"}
+              bg={bHand(p.id)? "green.500": "green.700"}
             >
               <Box as="span" fontWeight="bold" fontSize="lg">
                 {p.name}

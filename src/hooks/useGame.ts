@@ -14,7 +14,7 @@ const useGame = () => {
     cntDraw, ruleDraw,
     cntPlay, rulePlay,
     count,
-    players,
+    players, eldestHand,
   } = state as IState
 
   // ACTIONS
@@ -57,6 +57,7 @@ const useGame = () => {
 
   const bDraw = cntDraw < ruleDraw
   const bPlay = cntPlay < rulePlay
+  const bHand = (id:number) => eldestHand + 1 === id
 
   return {
     gameState,
@@ -65,7 +66,8 @@ const useGame = () => {
     cntPlay, rulePlay, setCntPlay, bPlay,
     count, incCount, decCount,
     gameBegin, gameEnd, gameOutro,
-    players,
+    players, bHand,
+    eldestHand,
   }
 }
 

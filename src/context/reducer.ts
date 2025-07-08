@@ -41,7 +41,9 @@ export const reducer = (state: IState, action: TAction): IState => {
       return { ...state, count: action.payload }
     }
     case Actions.SetPlayers: {
-      return { ...state, nPlayers: action.payload.length, players: action.payload }
+      const n = action.payload.length, rnd = Math.floor(Math.random() * n)
+      return { ...state,
+        eldestHand: rnd, nPlayers: n, players: action.payload}
     }
     default: {
       return state
