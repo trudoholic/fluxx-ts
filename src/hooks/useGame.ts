@@ -3,7 +3,7 @@ import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
 
 import {
-  GameState, type TPhase, range,
+  GameState, type TPhase, getPlayers,
 } from "../data/game"
 
 const useGame = () => {
@@ -20,7 +20,7 @@ const useGame = () => {
   // ACTIONS
 
   const gameBegin = (n: number) => {
-    dispatch({type: Actions.SetPlayers, payload: range(n)})
+    dispatch({type: Actions.SetPlayers, payload: getPlayers(n)})
     dispatch({type: Actions.SetGameState, payload: GameState.Main})
   }
 

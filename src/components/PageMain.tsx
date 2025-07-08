@@ -20,7 +20,7 @@ const PageMain = () => {
           onClick={() => gameOutro()}
         ><RiArrowRightSFill /></Button>
         <Heading as="h1">
-          Players: {players.join(':')}
+          Players: {players.map(p => p.name).join(':')}
         </Heading>
       </HStack>
       {/*---*/}

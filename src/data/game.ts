@@ -19,3 +19,23 @@ export const Phase = {
 export type TPhase = typeof Phase[keyof typeof Phase]
 
 export const range = (n: number) => Array.from(Array(n).keys())
+
+export type TPlayer = {
+  id: number
+  name: string
+  pass: boolean
+  score: number
+}
+
+const playerNames = ["Anna", "Beth", "Ciri", "Dana"]
+
+const oPlayer: TPlayer = {
+  id: 0,
+  name: "",
+  pass: false,
+  score: 0,
+}
+
+export const getPlayers = (n: number) => range(n).map(i => ({
+  ...oPlayer, id: i + 1, name: playerNames[i]
+}))

@@ -1,6 +1,7 @@
 import {
   type TGameState,
   type TPhase,
+  type TPlayer,
 } from "../data/game"
 import {type IState} from "./state"
 
@@ -19,7 +20,7 @@ export type TAction =
   | { type: 'SetCntDraw', payload: number }
   | { type: 'SetCntPlay', payload: number }
   | { type: 'SetCount', payload: number }
-  | { type: 'SetPlayers', payload: number[] }
+  | { type: 'SetPlayers', payload: TPlayer[] }
 
 export const reducer = (state: IState, action: TAction): IState => {
   switch (action.type) {

@@ -1,6 +1,7 @@
 import {
   type TGameState, GameState,
   type TPhase, Phase,
+  type TPlayer,
 } from "../data/game"
 
 export interface IState {
@@ -10,7 +11,7 @@ export interface IState {
   cntPlay: number
   count: number
   nPlayers: number
-  players: number[]
+  players: TPlayer[]
   ruleDraw: number
   rulePlay: number
 }
