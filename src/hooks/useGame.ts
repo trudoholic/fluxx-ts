@@ -14,7 +14,7 @@ const useGame = () => {
     cntDraw, ruleDraw,
     cntPlay, rulePlay,
     count,
-    players, eldestHand,
+    nPlayers, players, eldestHand, curHand,
   } = state as IState
 
   // ACTIONS
@@ -27,6 +27,15 @@ const useGame = () => {
   const gameEnd = () => {
     dispatch({type: Actions.SetPlayers, payload: []})
     dispatch({type: Actions.SetGameState, payload: GameState.Intro})
+  }
+
+  const nextHand = () => {
+    let n = curHand + 1
+    if (nPlayers === n) {
+      console.log('Round')
+      n = 0
+    }
+    dispatch({type: Actions.SetCurHand, payload: n})
   }
 
   const gameOutro = () => {
@@ -57,7 +66,7 @@ const useGame = () => {
 
   const bDraw = cntDraw < ruleDraw
   const bPlay = cntPlay < rulePlay
-  const bHand = (id:number) => eldestHand + 1 === id
+  const bHand = (id:number) => ((eldestHand + curHand) % nPlayers) + 1 === id
 
   return {
     gameState,
@@ -67,7 +76,8 @@ const useGame = () => {
     count, incCount, decCount,
     gameBegin, gameEnd, gameOutro,
     players, bHand,
-    eldestHand,
+    eldestHand, curHand,
+    nextHand,
   }
 }
 

@@ -11,6 +11,7 @@ export const Actions = {
   SetCntDraw: 'SetCntDraw',
   SetCntPlay: 'SetCntPlay',
   SetCount: 'SetCount',
+  SetCurHand: 'SetCurHand',
   SetPlayers: 'SetPlayers',
 } as const
 
@@ -20,6 +21,7 @@ export type TAction =
   | { type: 'SetCntDraw', payload: number }
   | { type: 'SetCntPlay', payload: number }
   | { type: 'SetCount', payload: number }
+  | { type: 'SetCurHand', payload: number }
   | { type: 'SetPlayers', payload: TPlayer[] }
 
 export const reducer = (state: IState, action: TAction): IState => {
@@ -40,10 +42,13 @@ export const reducer = (state: IState, action: TAction): IState => {
     case Actions.SetCount: {
       return { ...state, count: action.payload }
     }
+    case Actions.SetCurHand: {
+      return { ...state, curHand: action.payload }
+    }
     case Actions.SetPlayers: {
       const n = action.payload.length, rnd = Math.floor(Math.random() * n)
       return { ...state,
-        eldestHand: rnd, nPlayers: n, players: action.payload}
+        curHand: 0, eldestHand: rnd, nPlayers: n, players: action.payload}
     }
     default: {
       return state

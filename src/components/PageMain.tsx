@@ -7,10 +7,10 @@ import PhasePlay from "./PhasePlay"
 
 const PageMain = () => {
   const {
-    gameOutro,
+    gameOutro, nextHand,
     phase,
     players, bHand,
-    eldestHand,
+    eldestHand, curHand,
   } = useGame()
 
   return (
@@ -20,9 +20,15 @@ const PageMain = () => {
           colorPalette={"green"}
           onClick={() => gameOutro()}
         ><RiArrowRightSFill /></Button>
+
         <Heading as="h1">
-          Players: {eldestHand + 1}
+          {`Players: ${eldestHand + 1} | ${curHand}`}
         </Heading>
+      </HStack>
+      {/*---*/}
+      <Separator width="100%" borderColor={'green.800'} />
+      {/*---*/}
+      <HStack m={2}>
         {
           players.map(p => (
             <Center
@@ -35,6 +41,11 @@ const PageMain = () => {
             </Center>
           ))
         }
+
+        <Button
+          colorPalette={"orange"}
+          onClick={() => nextHand()}
+        ><RiArrowRightSFill /></Button>
       </HStack>
       {/*---*/}
       <Separator width="100%" borderColor={'green.800'} />
