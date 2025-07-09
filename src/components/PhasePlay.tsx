@@ -1,39 +1,34 @@
-import {Button, Heading, HStack, Separator, StackSeparator} from "@chakra-ui/react"
-import {RiArrowLeftSFill, RiArrowRightSFill} from "react-icons/ri"
-import {Phase} from "../data/game"
+import {Button, Heading, HStack} from "@chakra-ui/react"
+import {RiArrowRightSFill} from "react-icons/ri"
+// import {Phase} from "../data/game"
 import useGame from "../hooks/useGame"
 
 const PhasePlay = () => {
   const {
-    phase, setPhase,
+    // setPhase,
+    nextHand,
     cntPlay, rulePlay, setCntPlay, bPlay,
   } = useGame()
 
   return (
     <>
-      <HStack m={2} separator={<StackSeparator />}>
-        <Button
-          colorPalette={"green"}
-          onClick={() => setPhase(Phase.Draw)}
-        ><RiArrowRightSFill /></Button>
-        <Heading as="h1">
-          PhasePlay: {phase}
-        </Heading>
-      </HStack>
-      {/*---*/}
-      <Separator width="100%" borderColor={'green.800'} />
-      {/*---*/}
       <HStack m={2}>
-        <Button
-          colorPalette={"orange"}
-          onClick={() => setCntPlay(cntPlay - 1)}
-        ><RiArrowLeftSFill /></Button>
-        <Button
-          colorPalette={"orange"}
-          onClick={() => setCntPlay(cntPlay + 1)}
-        ><RiArrowRightSFill /></Button>
+        {
+          bPlay? (
+            <Button
+              colorPalette={"orange"}
+              onClick={() => setCntPlay(cntPlay + 1)}
+            ><RiArrowRightSFill /></Button>
+          ): (
+            <Button
+              colorPalette={"green"}
+              // onClick={() => setPhase(Phase.Draw)}
+              onClick={() => nextHand()}
+            ><RiArrowRightSFill /></Button>
+          )
+        }
         <Heading as="h1">
-          Play: {cntPlay} : {rulePlay} : {bPlay? '': '*'}
+          {bPlay? `Play: ${cntPlay} / ${rulePlay}`: 'Next Player'}
         </Heading>
       </HStack>
     </>

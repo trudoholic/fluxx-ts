@@ -38,6 +38,7 @@ const useGame = () => {
     dispatch({type: Actions.SetCurHand, payload: n})
 
     dispatch({type: Actions.SetCntDraw, payload: 0})
+    dispatch({type: Actions.SetCntPlay, payload: 0})
     dispatch({type: Actions.SetPhase, payload: Phase.Draw})
   }
 

@@ -44,6 +44,7 @@ const PageMain = () => {
 
         <Button
           colorPalette={"orange"}
+          disabled
           onClick={() => nextHand()}
         ><RiArrowRightSFill /></Button>
       </HStack>

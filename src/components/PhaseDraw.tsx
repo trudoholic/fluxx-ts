@@ -26,7 +26,7 @@ const PhaseDraw = () => {
           )
         }
         <Heading as="h1">
-          {bDraw? `Draw: ${cntDraw} / ${ruleDraw}`: 'Next'}
+          {bDraw? `Draw: ${cntDraw} / ${ruleDraw}`: 'Next Phase'}
         </Heading>
       </HStack>
     </>
