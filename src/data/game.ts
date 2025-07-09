@@ -19,6 +19,7 @@ export const Phase = {
 export type TPhase = typeof Phase[keyof typeof Phase]
 
 export const range = (n: number) => Array.from(Array(n).keys())
+export const dieRoll = (n: number) => Math.floor(Math.random() * n) + 1
 
 export type TPlayer = {
   id: number

@@ -3,7 +3,7 @@ import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
 
 import {
-  GameState, type TPhase, Phase, getPlayers,
+  GameState, type TPhase, Phase, getPlayers, dieRoll,
 } from "../data/game"
 
 const useGame = () => {
@@ -16,6 +16,9 @@ const useGame = () => {
     count,
     nPlayers, players, eldestHand, curHand,
   } = state as IState
+
+  const curId = ((eldestHand + curHand) % nPlayers) + 1
+  const curPlayer = players.find(p => curId === p.id)
 
   // ACTIONS
 
@@ -60,6 +63,9 @@ const useGame = () => {
 
   const setCntPlay = (n: number) => {
     dispatch({type: Actions.SetCntPlay, payload: n})
+    dispatch({type: Actions.SetPlayer, payload: {
+      id: curPlayer.id, score: curPlayer.score + dieRoll(6)
+    }})
   }
 
   const setPhase = (phase: TPhase) => {
@@ -70,10 +76,11 @@ const useGame = () => {
 
   const bDraw = cntDraw < ruleDraw
   const bPlay = cntPlay < rulePlay
-  const bHand = (id:number) => ((eldestHand + curHand) % nPlayers) + 1 === id
+  const bHand = (id:number) => curId === id
+  const gameOver = players.some(p => p.score > 30)
 
   return {
-    gameState,
+    gameState, gameOver,
     phase, setPhase,
     cntDraw, ruleDraw, setCntDraw, bDraw,
     cntPlay, rulePlay, setCntPlay, bPlay,

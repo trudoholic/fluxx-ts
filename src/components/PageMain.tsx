@@ -10,7 +10,7 @@ const PageMain = () => {
     gameOutro, nextHand,
     phase,
     players, bHand,
-    eldestHand, curHand,
+    gameOver,
   } = useGame()
 
   return (
@@ -22,7 +22,7 @@ const PageMain = () => {
         ><RiArrowRightSFill /></Button>
 
         <Heading as="h1">
-          {`Players: ${eldestHand + 1} | ${curHand}`}
+          {`Game Over: ${gameOver}`}
         </Heading>
       </HStack>
       {/*---*/}
@@ -32,11 +32,11 @@ const PageMain = () => {
         {
           players.map(p => (
             <Center
-              key={p.id} w="80px" h="40px" color="white" rounded="md"
+              key={p.id} w="100px" h="40px" color="white" rounded="md"
               bg={bHand(p.id)? "green.500": "green.700"}
             >
               <Box as="span" fontWeight="bold" fontSize="lg">
-                {p.name}
+                {`${p.name}: ${p.score}`}
               </Box>
             </Center>
           ))
