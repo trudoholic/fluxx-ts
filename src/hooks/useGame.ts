@@ -3,7 +3,7 @@ import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
 
 import {
-  GameState, type TPhase, getPlayers,
+  GameState, type TPhase, Phase, getPlayers,
 } from "../data/game"
 
 const useGame = () => {
@@ -36,6 +36,9 @@ const useGame = () => {
       n = 0
     }
     dispatch({type: Actions.SetCurHand, payload: n})
+
+    dispatch({type: Actions.SetCntDraw, payload: 0})
+    dispatch({type: Actions.SetPhase, payload: Phase.Draw})
   }
 
   const gameOutro = () => {
