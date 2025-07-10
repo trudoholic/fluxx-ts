@@ -15,18 +15,6 @@ const PageMain = () => {
 
   return (
     <>
-      <HStack m={2}>
-        <Button
-          colorPalette={"green"}
-          onClick={() => gameOutro()}
-        ><RiArrowRightSFill /></Button>
-
-        <Heading as="h1">
-          {`Game Over: ${gameOver}`}
-        </Heading>
-      </HStack>
-      {/*---*/}
-      <Separator width="100%" borderColor={'green.800'} />
       {/*---*/}
       <HStack m={2}>
         {
@@ -41,7 +29,6 @@ const PageMain = () => {
             </Center>
           ))
         }
-
         <Button
           colorPalette={"orange"}
           disabled
@@ -58,6 +45,23 @@ const PageMain = () => {
           <PhasePlay />
         ): null
       }
+      {/*---*/}
+      <Separator width="100%" borderColor={'green.800'} />
+      {/*---*/}
+      {
+        gameOver? (
+          <HStack m={2}>
+            <Heading as="h1">
+              Game Over
+            </Heading>
+            <Button
+              colorPalette={"green"}
+              onClick={() => gameOutro()}
+            ><RiArrowRightSFill /></Button>
+          </HStack>
+        ): null
+      }
+      {/*---*/}
     </>
   )
 }

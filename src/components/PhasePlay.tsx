@@ -8,6 +8,7 @@ const PhasePlay = () => {
     // setPhase,
     nextHand,
     cntPlay, rulePlay, setCntPlay, bPlay,
+    gameOver,
   } = useGame()
 
   return (
@@ -17,11 +18,13 @@ const PhasePlay = () => {
           bPlay? (
             <Button
               colorPalette={"orange"}
+              disabled={gameOver}
               onClick={() => setCntPlay(cntPlay + 1)}
             ><RiArrowRightSFill /></Button>
           ): (
             <Button
               colorPalette={"green"}
+              disabled={gameOver}
               // onClick={() => setPhase(Phase.Draw)}
               onClick={() => nextHand()}
             ><RiArrowRightSFill /></Button>
