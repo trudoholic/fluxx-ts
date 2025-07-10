@@ -25,11 +25,18 @@ const useGame = () => {
   const gameBegin = (n: number) => {
     dispatch({type: Actions.SetPlayers, payload: getPlayers(n)})
     dispatch({type: Actions.SetGameState, payload: GameState.Main})
+    handBegin()
   }
 
   const gameEnd = () => {
     dispatch({type: Actions.SetPlayers, payload: []})
     dispatch({type: Actions.SetGameState, payload: GameState.Intro})
+  }
+
+  const handBegin = () => {
+    dispatch({type: Actions.SetCntDraw, payload: 0})
+    dispatch({type: Actions.SetCntPlay, payload: 0})
+    dispatch({type: Actions.SetPhase, payload: Phase.Draw})
   }
 
   const nextHand = () => {
@@ -39,10 +46,7 @@ const useGame = () => {
       n = 0
     }
     dispatch({type: Actions.SetCurHand, payload: n})
-
-    dispatch({type: Actions.SetCntDraw, payload: 0})
-    dispatch({type: Actions.SetCntPlay, payload: 0})
-    dispatch({type: Actions.SetPhase, payload: Phase.Draw})
+    handBegin()
   }
 
   const gameOutro = () => {
