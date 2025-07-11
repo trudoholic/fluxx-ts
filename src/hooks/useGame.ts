@@ -3,6 +3,11 @@ import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
 
 import {
+  test,
+} from "../data/cards"
+test()
+
+import {
   GameState, type TPhase, Phase, getPlayers, dieRoll,
 } from "../data/game"
 
