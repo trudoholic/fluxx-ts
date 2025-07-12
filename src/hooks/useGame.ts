@@ -2,10 +2,9 @@ import useAppContext from "../context/useAppContext"
 import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
 
-// import {
-//   test,
-// } from "../data/cards"
-// test()
+import {
+  type TZone, Zone,
+} from "../data/cards"
 
 import {
   GameState, type TPhase, Phase, getPlayers, dieRoll,
@@ -88,6 +87,10 @@ const useGame = () => {
     dispatch({type: Actions.SetActive, payload: bActive(id)? "": id})
   }
 
+  const setZone = (id: string) => {
+    dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Drop}})
+  }
+
   // PREDICATES
 
   const bDraw = cntDraw < ruleDraw
@@ -95,6 +98,11 @@ const useGame = () => {
   const bHand = (id:number) => curId === id
   const gameOver = players.some(p => p.score > 30)
   const bActive = (id:string) => idActive && idActive === id
+
+  function inZone(id: string, zone: TZone, player: number = 0) {
+    const data = deckData[id]
+    return data.zone === zone && data.player === player
+  }
 
   return {
     deck, deckData,
@@ -107,7 +115,8 @@ const useGame = () => {
     players, bHand,
     eldestHand, curHand,
     nextHand,
-    bActive, setActive,
+    bActive, idActive, setActive,
+    inZone, setZone,
   }
 }
 

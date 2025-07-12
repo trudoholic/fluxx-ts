@@ -39,14 +39,14 @@ const cardList = rawList.map(it => it.id)
 const cardMap = new Map<string, TCardData>(rawList.map(it => [it.id, it]))
 export const getCardData = (id: string) => cardMap.get(id)
 
-const Zone = {
+export const Zone = {
   Draw: "Draw",
   Drop: "Drop",
   Hand: "Hand",
   Keep: "Keep",
 } as const
 
-type TZone = typeof Zone[keyof typeof Zone]
+export type TZone = typeof Zone[keyof typeof Zone]
 
 export type TCardZone = {
   id: string

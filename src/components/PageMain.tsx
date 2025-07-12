@@ -1,22 +1,21 @@
 import {
   Box, Center, Button, Heading, HStack, Separator,
-  Flex, GridItem, SimpleGrid
+  GridItem, SimpleGrid
 } from "@chakra-ui/react"
 import {RiArrowRightSFill} from "react-icons/ri"
-import {getCardData, suitColor} from "../data/cards"
+import {Zone} from "../data/cards"
 import {Phase} from "../data/game"
 import useGame from "../hooks/useGame"
 import PhaseDraw from "./PhaseDraw"
 import PhasePlay from "./PhasePlay"
+import ZoneList from "./ZoneList"
 
 const PageMain = () => {
   const {
-    deck,
     gameOutro, nextHand,
     phase,
     players, bHand,
     gameOver,
-    bActive, setActive,
   } = useGame()
 
   return (
@@ -27,25 +26,7 @@ const PageMain = () => {
           <Heading as="h1" mb={2} color="green.600">
             Draw Pile
           </Heading>
-          <Flex gap="2" wrap="wrap">
-            {
-              deck.map(id => getCardData(id)).map(it => (
-                <Box
-                  key={it.id} p={.5} rounded="md"
-                  bg={bActive(it.id)? "white": "green.800"}
-                >
-                  <Center
-                    w="120px" py={1} rounded="md"
-                    bg={suitColor(it.suit)}
-                    // color={bActive(it.id)? "yellow.300": "white"}
-                    onClick={() => setActive(it.id)}
-                  >
-                    <Heading>{it.name}</Heading>
-                  </Center>
-                </Box>
-              ))
-            }
-          </Flex>
+          <ZoneList zone={Zone.Draw}/>
         </GridItem>
         <GridItem colSpan={1} bg="green.800" p={2}>
           <Heading as="h1" mb={2} color="green.600">
@@ -56,6 +37,7 @@ const PageMain = () => {
           <Heading as="h1" mb={2} color="green.600">
             Drop Pile
           </Heading>
+          <ZoneList zone={Zone.Drop}/>
         </GridItem>
       </SimpleGrid>
       {/*---*/}
