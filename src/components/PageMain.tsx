@@ -1,6 +1,9 @@
-import {Box, Center, Button, Heading, HStack, Separator} from "@chakra-ui/react"
+import {
+  Box, Center, Button, Heading, HStack, Separator,
+  Flex, GridItem, SimpleGrid
+} from "@chakra-ui/react"
 import {RiArrowRightSFill} from "react-icons/ri"
-import {Phase} from "../data/game"
+import {Phase, range} from "../data/game"
 import useGame from "../hooks/useGame"
 import PhaseDraw from "./PhaseDraw"
 import PhasePlay from "./PhasePlay"
@@ -15,6 +18,35 @@ const PageMain = () => {
 
   return (
     <>
+      {/*---*/}
+      <SimpleGrid columns={5} gap={2} mb={2}>
+        <GridItem colSpan={2} bg="green.800" p={2}>
+          <Heading as="h1" mb={2} color="green.600">
+            Draw Pile
+          </Heading>
+          <Flex gap="2" wrap="wrap">
+            {
+              range(12).map(n => (
+                <Center key={n} w="120px" bg="green.500" py={1} rounded="md">
+                  <Heading>{n}</Heading>
+                </Center>
+              ))
+            }
+          </Flex>
+        </GridItem>
+        <GridItem colSpan={1} bg="green.800" p={2}>
+          <Heading as="h1" mb={2} color="green.600">
+            Stack
+          </Heading>
+        </GridItem>
+        <GridItem colSpan={2} bg="green.800" p={2}>
+          <Heading as="h1" mb={2} color="green.600">
+            Drop Pile
+          </Heading>
+        </GridItem>
+      </SimpleGrid>
+      {/*---*/}
+      <Separator width="100%" borderColor={'green.800'} />
       {/*---*/}
       <HStack m={2}>
         {
