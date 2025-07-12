@@ -11,6 +11,8 @@ import {
 export interface IState {
   deck: string[]
   deckData: {[key: string]: TCardZone}
+  idActive: string
+  idTarget: string
   gameState: TGameState
   phase: TPhase
   cntDraw: number
@@ -27,6 +29,8 @@ export interface IState {
 export const defaultState: IState = {
   deck: [],
   deckData: {},
+  idActive: "",
+  idTarget: "",
   gameState: GameState.Intro,
   phase: Phase.Draw,
   cntDraw: 0,

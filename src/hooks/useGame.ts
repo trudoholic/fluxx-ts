@@ -21,6 +21,7 @@ const useGame = () => {
     cntPlay, rulePlay,
     count,
     nPlayers, players, eldestHand, curHand,
+    idActive,
   } = state as IState
 
   const curId = ((eldestHand + curHand) % nPlayers) + 1
@@ -83,12 +84,17 @@ const useGame = () => {
     dispatch({type: Actions.SetPhase, payload: phase})
   }
 
+  const setActive = (id: string) => {
+    dispatch({type: Actions.SetActive, payload: bActive(id)? "": id})
+  }
+
   // PREDICATES
 
   const bDraw = cntDraw < ruleDraw
   const bPlay = cntPlay < rulePlay
   const bHand = (id:number) => curId === id
   const gameOver = players.some(p => p.score > 30)
+  const bActive = (id:string) => idActive && idActive === id
 
   return {
     deck, deckData,
@@ -101,6 +107,7 @@ const useGame = () => {
     players, bHand,
     eldestHand, curHand,
     nextHand,
+    bActive, setActive,
   }
 }
 

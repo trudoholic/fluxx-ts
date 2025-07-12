@@ -11,6 +11,7 @@ import {type IState} from "./state"
 
 export const Actions = {
   ResetDeck: 'ResetDeck',
+  SetActive: 'SetActive',
   SetGameState: 'SetGameState',
   SetPhase: 'SetPhase',
   SetCntDraw: 'SetCntDraw',
@@ -23,6 +24,7 @@ export const Actions = {
 
 export type TAction =
   | { type: 'ResetDeck' }
+  | { type: 'SetActive', payload: string }
   | { type: 'SetGameState', payload: TGameState }
   | { type: 'SetPhase', payload: TPhase }
   | { type: 'SetCntDraw', payload: number }
@@ -41,6 +43,9 @@ export const reducer = (state: IState, action: TAction): IState => {
         deck: o.deck,
         deckData: o.deckData,
       }
+    }
+    case Actions.SetActive: {
+      return { ...state, idActive: action.payload }
     }
     case Actions.SetGameState: {
       return { ...state, gameState: action.payload }

@@ -16,6 +16,7 @@ const PageMain = () => {
     phase,
     players, bHand,
     gameOver,
+    bActive, setActive,
   } = useGame()
 
   return (
@@ -29,12 +30,19 @@ const PageMain = () => {
           <Flex gap="2" wrap="wrap">
             {
               deck.map(id => getCardData(id)).map(it => (
-                <Center
-                  key={it.id} w="120px" py={1} rounded="md"
-                  bg={suitColor(it.suit)}
+                <Box
+                  key={it.id} p={.5} rounded="md"
+                  bg={bActive(it.id)? "white": "green.800"}
                 >
-                  <Heading>{it.name}</Heading>
-                </Center>
+                  <Center
+                    w="120px" py={1} rounded="md"
+                    bg={suitColor(it.suit)}
+                    // color={bActive(it.id)? "yellow.300": "white"}
+                    onClick={() => setActive(it.id)}
+                  >
+                    <Heading>{it.name}</Heading>
+                  </Center>
+                </Box>
               ))
             }
           </Flex>
