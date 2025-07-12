@@ -3,13 +3,15 @@ import {
   Flex, GridItem, SimpleGrid
 } from "@chakra-ui/react"
 import {RiArrowRightSFill} from "react-icons/ri"
-import {Phase, range} from "../data/game"
+import {getCardData} from "../data/cards"
+import {Phase} from "../data/game"
 import useGame from "../hooks/useGame"
 import PhaseDraw from "./PhaseDraw"
 import PhasePlay from "./PhasePlay"
 
 const PageMain = () => {
   const {
+    deck,
     gameOutro, nextHand,
     phase,
     players, bHand,
@@ -26,9 +28,9 @@ const PageMain = () => {
           </Heading>
           <Flex gap="2" wrap="wrap">
             {
-              range(12).map(n => (
-                <Center key={n} w="120px" bg="green.500" py={1} rounded="md">
-                  <Heading>{n}</Heading>
+              deck.map(id => getCardData(id)).map(it => (
+                <Center key={it.id} w="120px" bg="green.500" py={1} rounded="md">
+                  <Heading>{it.name}</Heading>
                 </Center>
               ))
             }

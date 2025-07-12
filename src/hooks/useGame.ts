@@ -2,10 +2,10 @@ import useAppContext from "../context/useAppContext"
 import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
 
-import {
-  test,
-} from "../data/cards"
-test()
+// import {
+//   test,
+// } from "../data/cards"
+// test()
 
 import {
   GameState, type TPhase, Phase, getPlayers, dieRoll,
@@ -14,6 +14,7 @@ import {
 const useGame = () => {
   const { state, dispatch } = useAppContext()
   const {
+    deck, deckData,
     gameState,
     phase,
     cntDraw, ruleDraw,
@@ -28,6 +29,7 @@ const useGame = () => {
   // ACTIONS
 
   const gameBegin = (n: number) => {
+    dispatch({type: Actions.ResetDeck})
     dispatch({type: Actions.SetPlayers, payload: getPlayers(n)})
     dispatch({type: Actions.SetGameState, payload: GameState.Main})
     handBegin()
@@ -89,6 +91,7 @@ const useGame = () => {
   const gameOver = players.some(p => p.score > 30)
 
   return {
+    deck, deckData,
     gameState, gameOver,
     phase, setPhase,
     cntDraw, ruleDraw, setCntDraw, bDraw,

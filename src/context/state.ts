@@ -1,10 +1,16 @@
 import {
+  type TCardZone,
+} from "../data/cards"
+
+import {
   type TGameState, GameState,
   type TPhase, Phase,
   type TPlayer,
 } from "../data/game"
 
 export interface IState {
+  deck: string[]
+  deckData: {[key: string]: TCardZone}
   gameState: TGameState
   phase: TPhase
   cntDraw: number
@@ -19,6 +25,8 @@ export interface IState {
 }
 
 export const defaultState: IState = {
+  deck: [],
+  deckData: {},
   gameState: GameState.Intro,
   phase: Phase.Draw,
   cntDraw: 0,

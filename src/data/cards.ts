@@ -1,12 +1,12 @@
-export const Suit = {
+const Suit = {
   Blue: "Blue",
   Green: "Green",
   Red: "Red",
 } as const
 
-export type TSuit = typeof Suit[keyof typeof Suit]
+type TSuit = typeof Suit[keyof typeof Suit]
 
-export type TCardData = {
+type TCardData = {
   id: string
   name: string
   rank?: number
@@ -27,27 +27,27 @@ const rawList: TCardData[] = [
 const cardList = rawList.map(it => it.id)
 
 const cardMap = new Map<string, TCardData>(rawList.map(it => [it.id, it]))
-export const getCardData = (id: string) => cardMap.get(id)
+export const getCardData = (id: string) => cardMap.get(id) //###
 
-export const Zone = {
+const Zone = {
   Draw: "Draw",
   Drop: "Drop",
   Hand: "Hand",
   Keep: "Keep",
 } as const
 
-export type TZone = typeof Zone[keyof typeof Zone]
+type TZone = typeof Zone[keyof typeof Zone]
 
-export type TCardZone = {
+export type TCardZone = { //###
   id: string
   player: number
   zone: TZone
 }
 
 const zoneMap = new Map<string, TCardZone>(rawList.map(it => [it.id, {id: it.id, player: 0, zone: Zone.Draw}]))
-export const getZoneData = (id: string) => zoneMap.get(id)
+// const getZoneData = (id: string) => zoneMap.get(id)
 
-export const shuffle = (list: string[], debug = false) => {
+const shuffle = (list: string[], debug = false) => {
   const src = [...list]
   if (debug) return src
 
@@ -59,17 +59,17 @@ export const shuffle = (list: string[], debug = false) => {
   return result
 }
 
-// const cb = (acc: {[key: string]: TCardData}, it) => { acc[it.id] = it; return acc }
-// const cardMap = rawList.reduce(cb, {})
-//
-// export function getCardData(id: string) {
-//   return cardMap[id] as TCardData
-// }
-
-export function test() {
-  console.log('cardList:', cardList)
-  console.log('shuffle:', shuffle(cardList))
-  console.log('cardMap:', cardMap)
-  console.log('Data:', cardList[3], getCardData(cardList[3]))
-  console.log('Zone:', cardList[3], getZoneData(cardList[3]))
+export function resetDeck() { //###
+  return {
+    deck: shuffle(cardList),
+    deckData: Object.fromEntries(zoneMap),
+  }
 }
+
+// export function test() {
+//   console.log('cardList:', cardList)
+//   console.log('shuffle:', shuffle(cardList))
+//   console.log('cardMap:', cardMap)
+//   console.log('Data:', cardList[3], getCardData(cardList[3]))
+//   console.log('Zone:', cardList[3], getZoneData(cardList[3]))
+// }
