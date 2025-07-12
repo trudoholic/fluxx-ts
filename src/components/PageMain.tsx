@@ -3,7 +3,7 @@ import {
   Flex, GridItem, SimpleGrid
 } from "@chakra-ui/react"
 import {RiArrowRightSFill} from "react-icons/ri"
-import {getCardData} from "../data/cards"
+import {getCardData, suitColor} from "../data/cards"
 import {Phase} from "../data/game"
 import useGame from "../hooks/useGame"
 import PhaseDraw from "./PhaseDraw"
@@ -29,7 +29,10 @@ const PageMain = () => {
           <Flex gap="2" wrap="wrap">
             {
               deck.map(id => getCardData(id)).map(it => (
-                <Center key={it.id} w="120px" bg="green.500" py={1} rounded="md">
+                <Center
+                  key={it.id} w="120px" py={1} rounded="md"
+                  bg={suitColor(it.suit)}
+                >
                   <Heading>{it.name}</Heading>
                 </Center>
               ))

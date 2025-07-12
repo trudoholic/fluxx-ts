@@ -6,6 +6,16 @@ const Suit = {
 
 type TSuit = typeof Suit[keyof typeof Suit]
 
+const suitColors = new Map<TSuit, string>([
+  [Suit.Blue, "blue.500"],
+  [Suit.Green, "green.500"],
+  [Suit.Red, "red.500"],
+])
+
+export const suitColor = (suit: TSuit|undefined) => {
+  return (suit? suitColors.get(suit): "gray.900")
+}
+
 type TCardData = {
   id: string
   name: string
@@ -27,7 +37,7 @@ const rawList: TCardData[] = [
 const cardList = rawList.map(it => it.id)
 
 const cardMap = new Map<string, TCardData>(rawList.map(it => [it.id, it]))
-export const getCardData = (id: string) => cardMap.get(id) //###
+export const getCardData = (id: string) => cardMap.get(id)
 
 const Zone = {
   Draw: "Draw",
@@ -38,7 +48,7 @@ const Zone = {
 
 type TZone = typeof Zone[keyof typeof Zone]
 
-export type TCardZone = { //###
+export type TCardZone = {
   id: string
   player: number
   zone: TZone
@@ -59,7 +69,7 @@ const shuffle = (list: string[], debug = false) => {
   return result
 }
 
-export function resetDeck() { //###
+export function resetDeck() {
   return {
     deck: shuffle(cardList),
     deckData: Object.fromEntries(zoneMap),
