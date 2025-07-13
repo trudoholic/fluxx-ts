@@ -23,17 +23,19 @@ type TCardData = {
   suit?: TSuit
 }
 
-const rawList: TCardData[] = [
-  { id: 'R:1', name: 'R 1', rank: 1, suit: Suit.Red },
-  { id: 'R:2', name: 'R 2', rank: 2, suit: Suit.Red },
-  { id: 'R:3', name: 'R 3', rank: 3, suit: Suit.Red },
-  { id: 'G:1', name: 'G 1', rank: 1, suit: Suit.Green },
-  { id: 'G:2', name: 'G 2', rank: 2, suit: Suit.Green },
-  { id: 'G:3', name: 'G 3', rank: 3, suit: Suit.Green },
-  { id: 'B:1', name: 'B 1', rank: 1, suit: Suit.Blue },
-  { id: 'B:2', name: 'B 2', rank: 2, suit: Suit.Blue },
-  { id: 'B:3', name: 'B 3', rank: 3, suit: Suit.Blue },
-]
+const range = (n: number) => Array.from(Array(n).keys())
+const rawList: TCardData[] = range(52).map(i => ({ id: 'B:'+i, name: 'B '+(i+1), rank: i, suit: Suit.Blue }))
+// const rawList: TCardData[] = [
+//   { id: 'R:1', name: 'R 1', rank: 1, suit: Suit.Red },
+//   { id: 'R:2', name: 'R 2', rank: 2, suit: Suit.Red },
+//   { id: 'R:3', name: 'R 3', rank: 3, suit: Suit.Red },
+//   { id: 'G:1', name: 'G 1', rank: 1, suit: Suit.Green },
+//   { id: 'G:2', name: 'G 2', rank: 2, suit: Suit.Green },
+//   { id: 'G:3', name: 'G 3', rank: 3, suit: Suit.Green },
+//   { id: 'B:1', name: 'B 1', rank: 1, suit: Suit.Blue },
+//   { id: 'B:2', name: 'B 2', rank: 2, suit: Suit.Blue },
+//   { id: 'B:3', name: 'B 3', rank: 3, suit: Suit.Blue },
+// ]
 const cardList = rawList.map(it => it.id)
 
 const cardMap = new Map<string, TCardData>(rawList.map(it => [it.id, it]))
@@ -71,7 +73,7 @@ const shuffle = (list: string[], debug = false) => {
 
 export function resetDeck() {
   return {
-    deck: shuffle(cardList),
+    deck: shuffle(cardList, true),
     deckData: Object.fromEntries(zoneMap),
   }
 }

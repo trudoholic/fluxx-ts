@@ -6,16 +6,17 @@ const ZoneList = (props:{zone: TZone, player?: number}) => {
   const {zone, player} = props
 
   const {
-    deck,
+    deckZone,
     bActive, setActive,
-    inZone, bEnabled,
+    bEnabled,
   } = useGame()
 
+  const list = deckZone(zone, player ?? 0)
+
   return (
-    <Flex gap="2" wrap="wrap">
+    <Flex gap="2" wrap="wrap" maxH="250px" overflowY="auto">
       {
-        deck
-          .filter(id => inZone(id, zone, player ?? 0))
+        list
           .map(id => getCardData(id))
           .map(it => (
             <Box

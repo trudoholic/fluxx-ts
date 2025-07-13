@@ -121,7 +121,7 @@ const useGame = () => {
   }
 
   return {
-    deck, deckData,
+    deck, deckData, deckZone,
     gameState, gameOver,
     phase, setPhase,
     cntDraw, ruleDraw, setCntDraw, bDraw,
