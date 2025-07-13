@@ -1,4 +1,4 @@
-import {Box, Center, Flex, Heading} from "@chakra-ui/react"
+import {Box, Center, Flex, Heading, Circle, Float} from "@chakra-ui/react"
 import {getCardData, suitColor, type TZone} from "../data/cards"
 import useGame from "../hooks/useGame"
 
@@ -8,7 +8,7 @@ const ZoneList = (props:{zone: TZone, player?: number}) => {
   const {
     deck,
     bActive, setActive,
-    inZone,
+    inZone, bEnabled,
   } = useGame()
 
   return (
@@ -23,12 +23,16 @@ const ZoneList = (props:{zone: TZone, player?: number}) => {
               bg={bActive(it.id)? "white": "green.800"}
             >
               <Center
+                position="relative"
                 w="64px" py={1} rounded="md"
                 bg={suitColor(it.suit)}
                 // color={bActive(it.id)? "yellow.300": "white"}
-                onClick={() => setActive(it.id)}
+                onClick={() => {
+                  if (bEnabled(it.id)) setActive(it.id)
+                }}
               >
                 <Heading>{it.name}</Heading>
+                {bEnabled(it.id) ? <Float><Circle size="2" bg="yellow.300"/></Float>: null}
               </Center>
             </Box>
           ))

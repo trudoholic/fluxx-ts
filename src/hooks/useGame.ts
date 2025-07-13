@@ -98,13 +98,22 @@ const useGame = () => {
     dispatch({type: Actions.UpdateDeck, payload: id})
   }
 
+  // FUNCTIONS
+
+  const deckZone = (zone: TZone, player?: number) => deck.filter(id => inZone(id, zone, player ?? 0))
+
   // PREDICATES
 
   const bDraw = cntDraw < ruleDraw
-  const bPlay = cntPlay < rulePlay
+  const bPlay = (cntPlay < rulePlay) && (deckZone(Zone.Hand, curId).length > 0)
   const bHand = (id:number) => curId === id
   const gameOver = players.some(p => p.score > 30)
   const bActive = (id:string) => idActive && idActive === id
+
+  const bEnabled = (id:string) => {
+    const data = deckData[id]
+    return data.zone === Zone.Hand && data.player === curId
+  }
 
   function inZone(id: string, zone: TZone, player: number = 0) {
     const data = deckData[id]
@@ -124,6 +133,7 @@ const useGame = () => {
     nextHand,
     bActive, idActive, setActive,
     inZone, handleDraw, handlePlay,
+    bEnabled,
   }
 }
 
