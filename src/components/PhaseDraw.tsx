@@ -7,6 +7,7 @@ const PhaseDraw = () => {
   const {
     setPhase,
     cntDraw, ruleDraw, setCntDraw, bDraw,
+    handleDraw,
   } = useGame()
 
   return (
@@ -16,7 +17,10 @@ const PhaseDraw = () => {
           bDraw? (
             <Button
               colorPalette={"orange"}
-              onClick={() => setCntDraw(cntDraw + 1)}
+              onClick={() => {
+                handleDraw()
+                setCntDraw(cntDraw + 1)
+              }}
             ><RiArrowRightSFill /></Button>
           ): (
             <Button

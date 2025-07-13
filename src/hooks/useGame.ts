@@ -93,6 +93,12 @@ const useGame = () => {
     dispatch({type: Actions.UpdateDeck, payload: id})
   }
 
+  const handleDraw = () => {
+    const id: string = deck[0]
+    dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Hand}})
+    dispatch({type: Actions.UpdateDeck, payload: id})
+  }
+
   // PREDICATES
 
   const bDraw = cntDraw < ruleDraw
@@ -119,6 +125,7 @@ const useGame = () => {
     nextHand,
     bActive, idActive, setActive,
     inZone, setZone,
+    handleDraw,
   }
 }
 
