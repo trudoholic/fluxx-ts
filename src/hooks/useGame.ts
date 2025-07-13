@@ -88,7 +88,9 @@ const useGame = () => {
   }
 
   const setZone = (id: string) => {
-    dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Drop}})
+    // dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Drop}})
+    dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Hand}})
+    dispatch({type: Actions.UpdateDeck, payload: id})
   }
 
   // PREDICATES

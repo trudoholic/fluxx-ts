@@ -11,6 +11,7 @@ import {type IState} from "./state"
 
 export const Actions = {
   ResetDeck: 'ResetDeck',
+  UpdateDeck: 'UpdateDeck',
   SetActive: 'SetActive',
   SetGameState: 'SetGameState',
   SetPhase: 'SetPhase',
@@ -25,6 +26,7 @@ export const Actions = {
 
 export type TAction =
   | { type: 'ResetDeck' }
+  | { type: 'UpdateDeck', payload: string }
   | { type: 'SetActive', payload: string }
   | { type: 'SetGameState', payload: TGameState }
   | { type: 'SetPhase', payload: TPhase }
@@ -45,6 +47,10 @@ export const reducer = (state: IState, action: TAction): IState => {
         deck: o.deck,
         deckData: o.deckData,
       }
+    }
+    case Actions.UpdateDeck: {
+      const ap = action.payload
+      return { ...state, deck: [...state.deck.filter(it => it !== ap), ap] }
     }
     case Actions.SetActive: {
       return { ...state, idActive: action.payload }

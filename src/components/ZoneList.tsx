@@ -23,7 +23,7 @@ const ZoneList = (props:{zone: TZone, player?: number}) => {
               bg={bActive(it.id)? "white": "green.800"}
             >
               <Center
-                w="120px" py={1} rounded="md"
+                w="64px" py={1} rounded="md"
                 bg={suitColor(it.suit)}
                 // color={bActive(it.id)? "yellow.300": "white"}
                 onClick={() => setActive(it.id)}

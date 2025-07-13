@@ -1,6 +1,6 @@
 import {
   Box, Center, Button, Heading, HStack, Separator,
-  GridItem, SimpleGrid
+  GridItem, SimpleGrid, //Code,
 } from "@chakra-ui/react"
 import {RiArrowRightSFill} from "react-icons/ri"
 import {Zone} from "../data/cards"
@@ -12,6 +12,7 @@ import ZoneList from "./ZoneList"
 
 const PageMain = () => {
   const {
+    // deck,
     gameOutro, nextHand,
     phase,
     players, bHand,
@@ -39,6 +40,19 @@ const PageMain = () => {
           </Heading>
           <ZoneList zone={Zone.Drop}/>
         </GridItem>
+      </SimpleGrid>
+      {/*---*/}
+      <SimpleGrid columns={players.length} gap={2} mb={2}>
+        {
+          players.map(p => (
+            <GridItem key={p.id} colSpan={1} bg="green.800" p={2}>
+              <Heading as="h1" mb={2} color="green.600">
+                {p.name} Hand
+              </Heading>
+              <ZoneList zone={Zone.Hand} player={p.id}/>
+            </GridItem>
+          ))
+        }
       </SimpleGrid>
       {/*---*/}
       <Separator width="100%" borderColor={'green.800'} />
@@ -74,6 +88,7 @@ const PageMain = () => {
       }
       {/*---*/}
       <Separator width="100%" borderColor={'green.800'} />
+      {/*<Code px={2}>{deck.join('|')}</Code>*/}
       {/*---*/}
       {
         gameOver? (
