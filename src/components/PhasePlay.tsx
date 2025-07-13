@@ -36,7 +36,8 @@ const PhasePlay = () => {
           )
         }
         <Heading as="h1">
-          {bPlay? `Play: ${cntPlay} / ${rulePlay}`: 'Next Player'}
+          {bPlay? `Play: ${rulePlay - cntPlay}`: 'Next Player'}
+          {/*{bPlay? `Play: ${cntPlay} / ${rulePlay}`: 'Next Player'}*/}
         </Heading>
       </HStack>
     </>

@@ -30,7 +30,8 @@ const PhaseDraw = () => {
           )
         }
         <Heading as="h1">
-          {bDraw? `Draw: ${cntDraw} / ${ruleDraw}`: 'Next Phase'}
+          {bDraw? `Draw: ${ruleDraw - cntDraw}`: 'Next Phase'}
+          {/*{bDraw? `Draw: ${cntDraw} / ${ruleDraw}`: 'Next Phase'}*/}
         </Heading>
       </HStack>
     </>

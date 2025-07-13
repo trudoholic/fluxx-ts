@@ -22,6 +22,8 @@ export interface IState {
   players: TPlayer[]
   ruleDraw: number
   rulePlay: number
+  ruleHand: number
+  ruleKeep: number
   eldestHand: number
   curHand: number
 }
@@ -38,8 +40,10 @@ export const defaultState: IState = {
   count: 0,
   nPlayers: 0,
   players: [],
-  ruleDraw: 2,
+  ruleDraw: 6,
   rulePlay: 3,
+  ruleHand: 1,
+  ruleKeep: 1,
   eldestHand: 0,
   curHand: 0,
 }

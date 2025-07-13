@@ -14,7 +14,7 @@ const ZoneList = (props:{zone: TZone, player?: number}) => {
   const list = deckZone(zone, player ?? 0)
 
   return (
-    <Flex gap="2" wrap="wrap" maxH="250px" overflowY="auto">
+    <Flex gap="2" pt="2" wrap="wrap" maxH="250px" overflowY="auto">
       {
         list
           .map(id => getCardData(id))
