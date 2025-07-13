@@ -53,6 +53,16 @@ const PageMain = () => {
             </GridItem>
           ))
         }
+        {
+          players.map(p => (
+            <GridItem key={p.id} colSpan={1} bg="green.800" p={2}>
+              <Heading as="h1" mb={2} color="green.600">
+                {p.name} Keep
+              </Heading>
+              <ZoneList zone={Zone.Keep} player={p.id}/>
+            </GridItem>
+          ))
+        }
       </SimpleGrid>
       {/*---*/}
       <Separator width="100%" borderColor={'green.800'} />

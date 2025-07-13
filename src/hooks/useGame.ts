@@ -86,16 +86,15 @@ const useGame = () => {
   const setActive = (id: string) => {
     dispatch({type: Actions.SetActive, payload: bActive(id)? "": id})
   }
-
-  const setZone = (id: string) => {
-    // dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Drop}})
+  const handleDraw = () => {
+    const id: string = deck[0]
     dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Hand}})
     dispatch({type: Actions.UpdateDeck, payload: id})
   }
 
-  const handleDraw = () => {
-    const id: string = deck[0]
-    dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Hand}})
+  const handlePlay = (id: string) => {
+    // dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Drop}})
+    dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Keep}})
     dispatch({type: Actions.UpdateDeck, payload: id})
   }
 
@@ -124,8 +123,7 @@ const useGame = () => {
     eldestHand, curHand,
     nextHand,
     bActive, idActive, setActive,
-    inZone, setZone,
-    handleDraw,
+    inZone, handleDraw, handlePlay,
   }
 }
 

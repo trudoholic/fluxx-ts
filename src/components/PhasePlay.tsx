@@ -8,7 +8,7 @@ const PhasePlay = () => {
     // setPhase,
     nextHand,
     cntPlay, rulePlay, setCntPlay, bPlay,
-    gameOver, idActive, setActive, setZone,
+    gameOver, idActive, setActive, handlePlay,
   } = useGame()
 
   return (
@@ -21,7 +21,7 @@ const PhasePlay = () => {
               disabled={gameOver || !idActive}
               onClick={() => {
                 // console.log('#', idActive)
-                setZone(idActive)
+                handlePlay(idActive)
                 setActive("")
                 setCntPlay(cntPlay + 1)
               }}
