@@ -2,10 +2,10 @@ import {Button, Heading, HStack} from "@chakra-ui/react"
 import {RiArrowRightSFill} from "react-icons/ri"
 import useGame from "../hooks/useGame"
 
-const PhaseDraw = () => {
+const PhaseDestroy = () => {
   const {
     cntDraw, ruleDraw, setCntDraw, bDraw,
-    handleDraw, endPhaseDraw,
+    handleDraw, endPhaseDestroy,
   } = useGame()
 
   return (
@@ -23,16 +23,16 @@ const PhaseDraw = () => {
           ): (
             <Button
               colorPalette={"green"}
-              onClick={() => endPhaseDraw()}
+              onClick={() => endPhaseDestroy()}
             ><RiArrowRightSFill /></Button>
           )
         }
         <Heading as="h1">
-          {bDraw? `Draw: ${ruleDraw - cntDraw}`: 'End Phase Draw'}
+          {bDraw? `Destroy: ${ruleDraw - cntDraw}`: 'End Phase Destroy'}
         </Heading>
       </HStack>
     </>
   )
 }
 
-export default PhaseDraw
+export default PhaseDestroy

@@ -1,14 +1,12 @@
 import {Button, Heading, HStack} from "@chakra-ui/react"
 import {RiArrowRightSFill} from "react-icons/ri"
-// import {Phase} from "../data/game"
 import useGame from "../hooks/useGame"
 
 const PhasePlay = () => {
   const {
-    // setPhase,
-    nextHand,
     cntPlay, rulePlay, setCntPlay, bPlay,
-    gameOver, idActive, setActive, handlePlay,
+    gameOver, idActive, setActive,
+    handlePlay, endPhasePlay,
   } = useGame()
 
   return (
@@ -30,14 +28,12 @@ const PhasePlay = () => {
             <Button
               colorPalette={"green"}
               disabled={gameOver}
-              // onClick={() => setPhase(Phase.Draw)}
-              onClick={() => nextHand()}
+              onClick={() => endPhasePlay()}
             ><RiArrowRightSFill /></Button>
           )
         }
         <Heading as="h1">
-          {bPlay? `Play: ${rulePlay - cntPlay}`: 'Next Player'}
-          {/*{bPlay? `Play: ${cntPlay} / ${rulePlay}`: 'Next Player'}*/}
+          {bPlay? `Play: ${rulePlay - cntPlay}`: 'End Phase Play'}
         </Heading>
       </HStack>
     </>

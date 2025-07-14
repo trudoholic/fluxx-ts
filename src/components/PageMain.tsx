@@ -8,6 +8,8 @@ import {Phase} from "../data/game"
 import useGame from "../hooks/useGame"
 import PhaseDraw from "./PhaseDraw"
 import PhasePlay from "./PhasePlay"
+import PhaseDiscard from "./PhaseDiscard"
+import PhaseDestroy from "./PhaseDestroy"
 import ZoneList from "./ZoneList"
 
 const PageMain = () => {
@@ -71,6 +73,10 @@ const PageMain = () => {
           <PhaseDraw />
         ): Phase.Play === phase? (
           <PhasePlay />
+        ): Phase.Discard === phase? (
+          <PhaseDiscard />
+        ): Phase.Destroy === phase? (
+          <PhaseDestroy />
         ): null
       }
       {/*---*/}

@@ -79,9 +79,9 @@ const useGame = () => {
     }})
   }
 
-  const setPhase = (phase: TPhase) => {
-    dispatch({type: Actions.SetPhase, payload: phase})
-  }
+  // const setPhase = (phase: TPhase) => {
+  //   dispatch({type: Actions.SetPhase, payload: phase})
+  // }
 
   const setActive = (id: string) => {
     dispatch({type: Actions.SetActive, payload: bActive(id)? "": id})
@@ -98,6 +98,19 @@ const useGame = () => {
     dispatch({type: Actions.UpdateDeck, payload: id})
   }
 
+  const endPhaseDraw = () => {
+    dispatch({type: Actions.SetPhase, payload: Phase.Play})
+  }
+  const endPhasePlay = () => {
+    dispatch({type: Actions.SetPhase, payload: Phase.Discard})
+  }
+  const endPhaseDiscard = () => {
+    dispatch({type: Actions.SetPhase, payload: Phase.Destroy})
+  }
+  const endPhaseDestroy = () => {
+    nextHand()
+  }
+
   // FUNCTIONS
 
   const deckZone = (zone: TZone, player?: number) => deck.filter(id => inZone(id, zone, player ?? 0))
@@ -106,6 +119,9 @@ const useGame = () => {
 
   const bDraw = cntDraw < ruleDraw
   const bPlay = (cntPlay < rulePlay) && (deckZone(Zone.Hand, curId).length > 0)
+  const bDiscard = false
+  const bDestroy = false
+
   const bHand = (id:number) => curId === id
   const gameOver = players.some(p => p.score > 30)
   const bActive = (id:string) => idActive && idActive === id
@@ -122,18 +138,21 @@ const useGame = () => {
 
   return {
     deck, deckData, deckZone,
-    gameState, gameOver,
-    phase, setPhase,
-    cntDraw, ruleDraw, setCntDraw, bDraw,
-    cntPlay, rulePlay, setCntPlay, bPlay,
+    gameState, gameOver, phase,
+    //setPhase,
+    bDraw, bPlay, bDiscard, bDestroy,
+    cntDraw, ruleDraw, setCntDraw,
+    cntPlay, rulePlay, setCntPlay,
     count, incCount, decCount,
     gameBegin, gameEnd, gameOutro,
     players, bHand,
     eldestHand, curHand,
     nextHand,
     bActive, idActive, setActive,
-    inZone, handleDraw, handlePlay,
+    // inZone,
+    handleDraw, handlePlay,
     bEnabled,
+    endPhaseDraw, endPhasePlay, endPhaseDiscard, endPhaseDestroy,
   }
 }
 
