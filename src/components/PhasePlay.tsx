@@ -5,7 +5,7 @@ import useGame from "../hooks/useGame"
 const PhasePlay = () => {
   const {
     cntPlay, rulePlay, setCntPlay, bPlay,
-    gameOver, idActive, setActive,
+    gameOver, idActive,
     handlePlay, endPhasePlay,
   } = useGame()
 
@@ -20,7 +20,6 @@ const PhasePlay = () => {
               onClick={() => {
                 // console.log('#', idActive)
                 handlePlay(idActive)
-                setActive("")
                 setCntPlay(cntPlay + 1)
               }}
             ><RiArrowRightSFill /></Button>

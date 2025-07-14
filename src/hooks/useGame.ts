@@ -7,7 +7,7 @@ import {
 } from "../data/cards"
 
 import {
-  GameState, type TPhase, Phase, getPlayers, dieRoll,
+  GameState, Phase, getPlayers, dieRoll,
 } from "../data/game"
 
 const useGame = () => {
@@ -96,10 +96,18 @@ const useGame = () => {
     // dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Drop}})
     dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Keep}})
     dispatch({type: Actions.UpdateDeck, payload: id})
+    autoSelect(id)
+  }
+
+  const autoSelect = (idPlay: string = "") => {
+    const list = deckZone(Zone.Hand, curId).filter(id => id !== idPlay)
+    const idx = list.length? list[0]: ""
+    setActive(idx)
   }
 
   const endPhaseDraw = () => {
     dispatch({type: Actions.SetPhase, payload: Phase.Play})
+    autoSelect()
   }
   const endPhasePlay = () => {
     dispatch({type: Actions.SetPhase, payload: Phase.Discard})
@@ -124,7 +132,7 @@ const useGame = () => {
 
   const bHand = (id:number) => curId === id
   const gameOver = players.some(p => p.score > 30)
-  const bActive = (id:string) => idActive && idActive === id
+  const bActive = (id:string) => idActive !== "" && idActive === id
 
   const bEnabled = (id:string) => {
     const data = deckData[id]
@@ -139,7 +147,6 @@ const useGame = () => {
   return {
     deck, deckData, deckZone,
     gameState, gameOver, phase,
-    //setPhase,
     bDraw, bPlay, bDiscard, bDestroy,
     cntDraw, ruleDraw, setCntDraw,
     cntPlay, rulePlay, setCntPlay,
@@ -149,7 +156,6 @@ const useGame = () => {
     eldestHand, curHand,
     nextHand,
     bActive, idActive, setActive,
-    // inZone,
     handleDraw, handlePlay,
     bEnabled,
     endPhaseDraw, endPhasePlay, endPhaseDiscard, endPhaseDestroy,

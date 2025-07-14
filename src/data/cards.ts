@@ -24,7 +24,7 @@ type TCardData = {
 }
 
 const range = (n: number) => Array.from(Array(n).keys())
-const rawList: TCardData[] = range(52).map(i => ({ id: 'B:'+i, name: 'B '+(i+1), rank: i, suit: Suit.Blue }))
+const rawList: TCardData[] = range(52).map(i => ({ id: 'B:'+i, name: 'B '+i, rank: i, suit: Suit.Blue }))
 // const rawList: TCardData[] = [
 //   { id: 'R:1', name: 'R 1', rank: 1, suit: Suit.Red },
 //   { id: 'R:2', name: 'R 2', rank: 2, suit: Suit.Red },
