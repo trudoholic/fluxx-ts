@@ -123,12 +123,17 @@ const useGame = () => {
 
   const deckZone = (zone: TZone, player?: number) => deck.filter(id => inZone(id, zone, player ?? 0))
 
+  const nDraw = ruleDraw - cntDraw
+  const nPlay = rulePlay - cntPlay
+  const nDiscard = 0
+  const nDestroy = 0
+
   // PREDICATES
 
-  const bDraw = cntDraw < ruleDraw
-  const bPlay = (cntPlay < rulePlay) && (deckZone(Zone.Hand, curId).length > 0)
-  const bDiscard = false
-  const bDestroy = false
+  const bDraw = nDraw > 0
+  const bPlay = (nPlay > 0) && (deckZone(Zone.Hand, curId).length > 0)
+  const bDiscard = nDiscard > 0
+  const bDestroy = nDestroy > 0
 
   const bHand = (id:number) => curId === id
   const gameOver = players.some(p => p.score > 30)
@@ -147,18 +152,22 @@ const useGame = () => {
   return {
     deck, deckData, deckZone,
     gameState, gameOver, phase,
-    bDraw, bPlay, bDiscard, bDestroy,
-    cntDraw, ruleDraw, setCntDraw,
-    cntPlay, rulePlay, setCntPlay,
     count, incCount, decCount,
     gameBegin, gameEnd, gameOutro,
     players, bHand,
-    eldestHand, curHand,
-    nextHand,
+    eldestHand, curHand, nextHand,
     bActive, idActive, setActive,
-    handleDraw, handlePlay,
     bEnabled,
-    endPhaseDraw, endPhasePlay, endPhaseDiscard, endPhaseDestroy,
+    // Draw
+    bDraw, nDraw, cntDraw, ruleDraw,
+    setCntDraw, endPhaseDraw, handleDraw,
+    // Play
+    bPlay, nPlay, cntPlay, rulePlay,
+    setCntPlay, endPhasePlay, handlePlay,
+    // Discard
+    bDiscard, nDiscard, endPhaseDiscard,
+    // Destroy
+    bDestroy, nDestroy, endPhaseDestroy,
   }
 }
 

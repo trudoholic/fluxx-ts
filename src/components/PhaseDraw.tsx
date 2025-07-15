@@ -4,7 +4,7 @@ import useGame from "../hooks/useGame"
 
 const PhaseDraw = () => {
   const {
-    cntDraw, ruleDraw, setCntDraw, bDraw,
+    cntDraw, nDraw, setCntDraw, bDraw,
     handleDraw, endPhaseDraw,
   } = useGame()
 
@@ -28,7 +28,7 @@ const PhaseDraw = () => {
           )
         }
         <Heading as="h1">
-          {bDraw? `Draw: ${ruleDraw - cntDraw}`: 'End Phase Draw'}
+          {bDraw? `Draw: ${nDraw}`: 'End Phase Draw'}
         </Heading>
       </HStack>
     </>

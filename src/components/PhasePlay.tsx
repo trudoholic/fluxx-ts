@@ -4,7 +4,7 @@ import useGame from "../hooks/useGame"
 
 const PhasePlay = () => {
   const {
-    cntPlay, rulePlay, setCntPlay, bPlay,
+    cntPlay, nPlay, setCntPlay, bPlay,
     gameOver, idActive,
     handlePlay, endPhasePlay,
   } = useGame()
@@ -32,7 +32,7 @@ const PhasePlay = () => {
           )
         }
         <Heading as="h1">
-          {bPlay? `Play: ${rulePlay - cntPlay}`: 'End Phase Play'}
+          {bPlay? `Play: ${nPlay}`: 'End Phase Play'}
         </Heading>
       </HStack>
     </>
