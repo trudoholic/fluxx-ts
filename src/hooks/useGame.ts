@@ -18,7 +18,8 @@ const useGame = () => {
     phase,
     cntDraw, ruleDraw,
     cntPlay, rulePlay,
-    cntHand, ruleHand,
+    // cntHand,
+    ruleHand,
     cntKeep, ruleKeep,
     count,
     nPlayers, players, eldestHand, curHand,
@@ -81,10 +82,6 @@ const useGame = () => {
     }})
   }
 
-  // const setPhase = (phase: TPhase) => {
-  //   dispatch({type: Actions.SetPhase, payload: phase})
-  // }
-
   const setActive = (id: string) => {
     dispatch({type: Actions.SetActive, payload: bActive(id)? "": id})
   }
@@ -95,8 +92,13 @@ const useGame = () => {
   }
 
   const handlePlay = (id: string) => {
-    // dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Drop}})
     dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Keep}})
+    dispatch({type: Actions.UpdateDeck, payload: id})
+    autoSelect(id)
+  }
+
+  const handleDiscard = (id: string) => {
+    dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Drop}})
     dispatch({type: Actions.UpdateDeck, payload: id})
     autoSelect(id)
   }
@@ -125,15 +127,17 @@ const useGame = () => {
 
   const deckZone = (zone: TZone, player?: number) => deck.filter(id => inZone(id, zone, player ?? 0))
 
+  const handLength = deckZone(Zone.Hand, curId).length
+
   const nDraw = ruleDraw - cntDraw
   const nPlay = rulePlay - cntPlay
-  const nDiscard = 0
+  const nDiscard = handLength - ruleHand
   const nDestroy = 0
 
   // PREDICATES
 
   const bDraw = nDraw > 0
-  const bPlay = (nPlay > 0) && (deckZone(Zone.Hand, curId).length > 0)
+  const bPlay = nPlay > 0 && handLength > 0
   const bDiscard = nDiscard > 0
   const bDestroy = nDestroy > 0
 
@@ -167,7 +171,7 @@ const useGame = () => {
     bPlay, nPlay, cntPlay, rulePlay,
     setCntPlay, endPhasePlay, handlePlay,
     // Discard
-    bDiscard, nDiscard, endPhaseDiscard,
+    bDiscard, nDiscard, endPhaseDiscard, handleDiscard,
     // Destroy
     bDestroy, nDestroy, endPhaseDestroy,
   }

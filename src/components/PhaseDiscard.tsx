@@ -4,20 +4,19 @@ import useGame from "../hooks/useGame"
 
 const PhaseDiscard = () => {
   const {
-    cntDraw, nDiscard, setCntDraw, bDraw,
-    handleDraw, endPhaseDiscard,
+    idActive, nDiscard, bDiscard,
+    handleDiscard, endPhaseDiscard,
   } = useGame()
 
   return (
     <>
       <HStack m={2}>
         {
-          bDraw? (
+          bDiscard? (
             <Button
               colorPalette={"orange"}
               onClick={() => {
-                handleDraw()
-                setCntDraw(cntDraw + 1)
+                handleDiscard(idActive)
               }}
             ><RiArrowRightSFill /></Button>
           ): (
@@ -28,7 +27,7 @@ const PhaseDiscard = () => {
           )
         }
         <Heading as="h1">
-          {bDraw? `Discard: ${nDiscard}`: 'End Phase Discard'}
+          {bDiscard? `Discard: ${nDiscard}`: 'End Phase Discard'}
         </Heading>
       </HStack>
     </>
