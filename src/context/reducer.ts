@@ -17,6 +17,8 @@ export const Actions = {
   SetPhase: 'SetPhase',
   SetCntDraw: 'SetCntDraw',
   SetCntPlay: 'SetCntPlay',
+  SetCntHand: 'SetCntHand',
+  SetCntKeep: 'SetCntKeep',
   SetCount: 'SetCount',
   SetCurHand: 'SetCurHand',
   SetPlayer: 'SetPlayer',
@@ -32,6 +34,8 @@ export type TAction =
   | { type: 'SetPhase', payload: TPhase }
   | { type: 'SetCntDraw', payload: number }
   | { type: 'SetCntPlay', payload: number }
+  | { type: 'SetCntHand', payload: number }
+  | { type: 'SetCntKeep', payload: number }
   | { type: 'SetCount', payload: number }
   | { type: 'SetCurHand', payload: number }
   | { type: 'SetPlayer', payload: Partial<TPlayer> }
@@ -66,6 +70,12 @@ export const reducer = (state: IState, action: TAction): IState => {
     }
     case Actions.SetCntPlay: {
       return { ...state, cntPlay: action.payload }
+    }
+    case Actions.SetCntHand: {
+      return { ...state, cntHand: action.payload }
+    }
+    case Actions.SetCntKeep: {
+      return { ...state, cntKeep: action.payload }
     }
     case Actions.SetCount: {
       return { ...state, count: action.payload }

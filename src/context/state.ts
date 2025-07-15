@@ -17,6 +17,8 @@ export interface IState {
   phase: TPhase
   cntDraw: number
   cntPlay: number
+  cntHand: number
+  cntKeep: number
   count: number
   nPlayers: number
   players: TPlayer[]
@@ -37,6 +39,8 @@ export const defaultState: IState = {
   phase: Phase.Draw,
   cntDraw: 0,
   cntPlay: 0,
+  cntHand: 0,
+  cntKeep: 0,
   count: 0,
   nPlayers: 0,
   players: [],

@@ -18,6 +18,8 @@ const useGame = () => {
     phase,
     cntDraw, ruleDraw,
     cntPlay, rulePlay,
+    cntHand, ruleHand,
+    cntKeep, ruleKeep,
     count,
     nPlayers, players, eldestHand, curHand,
     idActive,
