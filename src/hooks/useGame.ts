@@ -18,9 +18,8 @@ const useGame = () => {
     phase,
     cntDraw, ruleDraw,
     cntPlay, rulePlay,
-    // cntHand,
     ruleHand,
-    cntKeep, ruleKeep,
+    ruleKeep,
     count,
     nPlayers, players, eldestHand, curHand,
     idActive,
@@ -94,24 +93,33 @@ const useGame = () => {
   const handlePlay = (id: string) => {
     dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Keep}})
     dispatch({type: Actions.UpdateDeck, payload: id})
-    autoSelect(id)
+    // autoSelect(id)
   }
 
   const handleDiscard = (id: string) => {
     dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Drop}})
     dispatch({type: Actions.UpdateDeck, payload: id})
-    autoSelect(id)
+    // autoSelect(id)
   }
 
-  const autoSelect = (idPlay: string = "") => {
-    const list = deckZone(Zone.Hand, curId).filter(id => id !== idPlay)
-    const idx = list.length? list[0]: ""
-    setActive(idx)
-  }
+  // const autoSelect = (idPlay: string = "") => {
+  //   console.log('>>>', phase, Phase.Play === phase)
+  //   const zone = (Phase.Play === phase || Phase.Discard === phase)? (
+  //     Zone.Hand
+  //   ): (Phase.Destroy === phase)? (
+  //     Zone.Keep
+  //   ): null
+  //   console.log('???', zone)
+  //   if (zone) {
+  //     const list = deckZone(zone, curId).filter(id => id !== idPlay)
+  //     const idx = list.length? list[0]: ""
+  //     setActive(idx)
+  //   }
+  // }
 
   const endPhaseDraw = () => {
     dispatch({type: Actions.SetPhase, payload: Phase.Play})
-    autoSelect()
+    // autoSelect()
   }
   const endPhasePlay = () => {
     dispatch({type: Actions.SetPhase, payload: Phase.Discard})
@@ -128,11 +136,12 @@ const useGame = () => {
   const deckZone = (zone: TZone, player?: number) => deck.filter(id => inZone(id, zone, player ?? 0))
 
   const handLength = deckZone(Zone.Hand, curId).length
+  const keepLength = deckZone(Zone.Keep, curId).length
 
   const nDraw = ruleDraw - cntDraw
   const nPlay = rulePlay - cntPlay
   const nDiscard = handLength - ruleHand
-  const nDestroy = 0
+  const nDestroy = keepLength - ruleKeep
 
   // PREDICATES
 
@@ -147,7 +156,13 @@ const useGame = () => {
 
   const bEnabled = (id:string) => {
     const data = deckData[id]
-    return data.zone === Zone.Hand && data.player === curId
+    return (
+      (Phase.Play === phase || Phase.Discard === phase)? (
+        data.zone === Zone.Hand && data.player === curId
+      ): (Phase.Destroy === phase)? (
+        data.zone === Zone.Keep && data.player === curId
+      ): false
+    )
   }
 
   function inZone(id: string, zone: TZone, player: number = 0) {

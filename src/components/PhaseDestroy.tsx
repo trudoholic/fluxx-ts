@@ -4,20 +4,19 @@ import useGame from "../hooks/useGame"
 
 const PhaseDestroy = () => {
   const {
-    cntDraw, nDestroy, setCntDraw, bDraw,
-    handleDraw, endPhaseDestroy,
+    idActive, nDestroy, bDestroy,
+    handleDiscard, endPhaseDestroy,
   } = useGame()
 
   return (
     <>
       <HStack m={2}>
         {
-          bDraw? (
+          bDestroy? (
             <Button
               colorPalette={"orange"}
               onClick={() => {
-                handleDraw()
-                setCntDraw(cntDraw + 1)
+                handleDiscard(idActive)
               }}
             ><RiArrowRightSFill /></Button>
           ): (
@@ -28,7 +27,7 @@ const PhaseDestroy = () => {
           )
         }
         <Heading as="h1">
-          {bDraw? `Destroy: ${nDestroy}`: 'End Phase Destroy'}
+          {bDestroy? `Destroy: ${nDestroy}`: 'End Phase Destroy'}
         </Heading>
       </HStack>
     </>
