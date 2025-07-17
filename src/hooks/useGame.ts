@@ -96,7 +96,7 @@ const useGame = () => {
     // autoSelect(id)
   }
 
-  const handleDiscard = (id: string) => {
+  const handleDrop = (id: string) => {
     dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Drop}})
     dispatch({type: Actions.UpdateDeck, payload: id})
     // autoSelect(id)
@@ -186,7 +186,7 @@ const useGame = () => {
     bPlay, nPlay, cntPlay, rulePlay,
     setCntPlay, endPhasePlay, handlePlay,
     // Discard
-    bDiscard, nDiscard, endPhaseDiscard, handleDiscard,
+    bDiscard, nDiscard, endPhaseDiscard, handleDrop,
     // Destroy
     bDestroy, nDestroy, endPhaseDestroy,
   }

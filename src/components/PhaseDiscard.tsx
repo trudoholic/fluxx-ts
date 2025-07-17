@@ -5,7 +5,7 @@ import useGame from "../hooks/useGame"
 const PhaseDiscard = () => {
   const {
     idActive, nDiscard, bDiscard,
-    handleDiscard, endPhaseDiscard,
+    handleDrop, endPhaseDiscard,
   } = useGame()
 
   return (
@@ -16,7 +16,7 @@ const PhaseDiscard = () => {
             <Button
               colorPalette={"orange"}
               onClick={() => {
-                handleDiscard(idActive)
+                handleDrop(idActive)
               }}
             ><RiArrowRightSFill /></Button>
           ): (
