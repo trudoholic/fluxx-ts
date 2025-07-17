@@ -14,20 +14,19 @@ const ZoneList = (props:{zone: TZone, player?: number}) => {
   const list = deckZone(zone, player ?? 0)
 
   return (
-    <Flex gap="2" pt="2" wrap="wrap" maxH="250px" overflowY="auto">
+    <Flex gap="2" pt="2" wrap="wrap" maxH="220px" overflowY="auto">
       {
         list
           .map(id => getCardData(id))
           .map(it => (
             <Box
-              key={it.id} p={.5} rounded="md"
-              bg={bActive(it.id)? "white": "green.800"}
+              key={it.id} p={1} rounded="md"
+              bg={bActive(it.id)? "green.300": "green.800"}
             >
               <Center
                 position="relative"
-                w="64px" py={1} rounded="md"
+                w="64px" py={1} rounded="sm"
                 bg={suitColor(it.suit)}
-                // color={bActive(it.id)? "yellow.300": "white"}
                 onClick={() => {
                   if (bEnabled(it.id)) setActive(it.id)
                 }}

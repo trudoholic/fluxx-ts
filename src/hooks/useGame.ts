@@ -84,6 +84,13 @@ const useGame = () => {
   const setActive = (id: string) => {
     dispatch({type: Actions.SetActive, payload: bActive(id)? "": id})
   }
+
+  const autoSelect = (zone: TZone, idPlay: string = "") => {
+    const list = deckZone(zone, curId).filter(id => id !== idPlay)
+    const idx = list.length? list[0]: ""
+    setActive(idx)
+  }
+
   const handleDraw = () => {
     const id: string = deck[0]
     dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Hand}})
@@ -93,42 +100,30 @@ const useGame = () => {
   const handlePlay = (id: string) => {
     dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Keep}})
     dispatch({type: Actions.UpdateDeck, payload: id})
-    // autoSelect(id)
+    autoSelect(Zone.Hand, id)
   }
 
   const handleDrop = (id: string) => {
     dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Drop}})
     dispatch({type: Actions.UpdateDeck, payload: id})
-    // autoSelect(id)
+    autoSelect(Phase.Discard === phase? Zone.Hand: Zone.Keep, id)
   }
-
-  // const autoSelect = (idPlay: string = "") => {
-  //   console.log('>>>', phase, Phase.Play === phase)
-  //   const zone = (Phase.Play === phase || Phase.Discard === phase)? (
-  //     Zone.Hand
-  //   ): (Phase.Destroy === phase)? (
-  //     Zone.Keep
-  //   ): null
-  //   console.log('???', zone)
-  //   if (zone) {
-  //     const list = deckZone(zone, curId).filter(id => id !== idPlay)
-  //     const idx = list.length? list[0]: ""
-  //     setActive(idx)
-  //   }
-  // }
 
   const endPhaseDraw = () => {
     dispatch({type: Actions.SetPhase, payload: Phase.Play})
-    // autoSelect()
+    autoSelect(Zone.Hand)
   }
   const endPhasePlay = () => {
     dispatch({type: Actions.SetPhase, payload: Phase.Discard})
+    // autoSelect(Zone.Hand)
   }
   const endPhaseDiscard = () => {
     dispatch({type: Actions.SetPhase, payload: Phase.Destroy})
+    autoSelect(Zone.Keep)
   }
   const endPhaseDestroy = () => {
     nextHand()
+    setActive("")
   }
 
   // FUNCTIONS
