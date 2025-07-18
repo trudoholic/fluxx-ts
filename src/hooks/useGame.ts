@@ -28,7 +28,8 @@ const useGame = () => {
 
   const curId = ((eldestHand + curHand) % nPlayers) + 1
   const curPlayer = players.find(p => curId === p.id)
-  const nextPlayer = players.find(p => ((curId + 1) % nPlayers) === p.id)
+  // const nextPlayer = players.find(p => ((curId + 1) % nPlayers) === p.id)
+  const nextPlayer = players.find(p => (curId % nPlayers) + 1 === p.id)
 
   // ACTIONS
 
