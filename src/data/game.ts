@@ -14,6 +14,7 @@ export const Phase = {
   Play: "Play",
   Discard: "Discard",
   Destroy: "Destroy",
+  End: "End",
 } as const
 
 export type TPhase = typeof Phase[keyof typeof Phase]

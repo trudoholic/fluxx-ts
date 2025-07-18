@@ -10,6 +10,7 @@ import PhaseDraw from "./PhaseDraw"
 import PhasePlay from "./PhasePlay"
 import PhaseDiscard from "./PhaseDiscard"
 import PhaseDestroy from "./PhaseDestroy"
+import PhaseEnd from "./PhaseEnd"
 import ZoneList from "./ZoneList"
 
 const PageMain = () => {
@@ -77,6 +78,8 @@ const PageMain = () => {
           <PhaseDiscard />
         ): Phase.Destroy === phase? (
           <PhaseDestroy />
+        ): Phase.End === phase? (
+          <PhaseEnd />
         ): null
       }
       {/*---*/}

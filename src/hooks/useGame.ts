@@ -28,6 +28,7 @@ const useGame = () => {
 
   const curId = ((eldestHand + curHand) % nPlayers) + 1
   const curPlayer = players.find(p => curId === p.id)
+  const nextPlayer = players.find(p => ((curId + 1) % nPlayers) === p.id)
 
   // ACTIONS
 
@@ -115,15 +116,25 @@ const useGame = () => {
     autoSelect(Zone.Hand)
   }
   const endPhasePlay = () => {
-    dispatch({type: Actions.SetPhase, payload: Phase.Discard})
-    // autoSelect(Zone.Hand)
+    if (bDiscard) {
+      dispatch({type: Actions.SetPhase, payload: Phase.Discard})
+      // autoSelect(Zone.Hand)
+    }
+    else {
+      endPhaseDiscard()
+    }
   }
   const endPhaseDiscard = () => {
-    dispatch({type: Actions.SetPhase, payload: Phase.Destroy})
-    autoSelect(Zone.Keep)
+    if (bDestroy) {
+      dispatch({type: Actions.SetPhase, payload: Phase.Destroy})
+      autoSelect(Zone.Keep)
+    }
+    else {
+      endPhaseDestroy()
+    }
   }
   const endPhaseDestroy = () => {
-    nextHand()
+    dispatch({type: Actions.SetPhase, payload: Phase.End})
     setActive("")
   }
 
@@ -171,7 +182,7 @@ const useGame = () => {
     gameState, gameOver, phase,
     count, incCount, decCount,
     gameBegin, gameEnd, gameOutro,
-    players, bHand,
+    players, bHand, curPlayer, nextPlayer,
     eldestHand, curHand, nextHand,
     bActive, idActive, setActive,
     bEnabled,

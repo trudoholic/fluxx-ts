@@ -1,3 +1,6 @@
+export const ALL = 1024
+export const NO = -1
+
 const Suit = {
   Blue: "Blue",
   Green: "Green",
@@ -37,8 +40,6 @@ const rawList: TCardData[] = range(52).map(i => ({ id: 'B:'+i, name: 'B '+i, ran
 //   { id: 'B:3', name: 'B 3', rank: 3, suit: Suit.Blue },
 // ]
 const cardList = rawList.map(it => it.id)
-export const ALL = 1024
-export const NO = -1
 
 const cardMap = new Map<string, TCardData>(rawList.map(it => [it.id, it]))
 export const getCardData = (id: string) => cardMap.get(id)
