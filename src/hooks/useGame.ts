@@ -3,6 +3,7 @@ import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
 
 import {
+  ALL,
   type TZone, Zone,
 } from "../data/cards"
 
@@ -134,7 +135,8 @@ const useGame = () => {
   const keepLength = deckZone(Zone.Keep, curId).length
 
   const nDraw = ruleDraw - cntDraw
-  const nPlay = rulePlay - cntPlay
+  const nPlay = ALL === rulePlay? handLength: rulePlay - cntPlay
+  // const nPlay = rulePlay - cntPlay
   const nDiscard = handLength - ruleHand
   const nDestroy = keepLength - ruleKeep
 
