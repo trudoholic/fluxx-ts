@@ -17,10 +17,8 @@ const useGame = () => {
     deck, deckData,
     gameState,
     phase,
-    cntDraw, ruleDraw,
-    cntPlay, rulePlay,
-    ruleHand,
-    ruleKeep,
+    cntDraw, cntPlay,
+    ruleDraw, rulePlay, ruleHand, ruleKeep,
     count,
     nPlayers, players, eldestHand, curHand,
     idActive,
@@ -194,9 +192,11 @@ const useGame = () => {
     bPlay, nPlay, cntPlay, rulePlay,
     setCntPlay, endPhasePlay, handlePlay,
     // Discard
-    bDiscard, nDiscard, endPhaseDiscard, handleDrop,
+    bDiscard, nDiscard, ruleHand,
+    endPhaseDiscard, handleDrop,
     // Destroy
-    bDestroy, nDestroy, endPhaseDestroy,
+    bDestroy, nDestroy, ruleKeep,
+    endPhaseDestroy,
   }
 }
 
