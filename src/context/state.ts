@@ -1,5 +1,6 @@
 import {
   type TCardZone,
+  ALL,
 } from "../data/cards"
 
 import {
@@ -40,8 +41,8 @@ export const defaultState: IState = {
   count: 0,
   nPlayers: 0,
   players: [],
-  ruleDraw: 6,
-  rulePlay: 3,
+  ruleDraw: 2,
+  rulePlay: ALL,
   ruleHand: 1,
   ruleKeep: 1,
   eldestHand: 0,
