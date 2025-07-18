@@ -3,7 +3,7 @@ import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
 
 import {
-  ALL,
+  ALL, NO,
   type TZone, Zone,
 } from "../data/cards"
 
@@ -136,9 +136,8 @@ const useGame = () => {
 
   const nDraw = ruleDraw - cntDraw
   const nPlay = ALL === rulePlay? handLength: rulePlay - cntPlay
-  // const nPlay = rulePlay - cntPlay
-  const nDiscard = handLength - ruleHand
-  const nDestroy = keepLength - ruleKeep
+  const nDiscard = NO === ruleHand? 0: handLength - ruleHand
+  const nDestroy = NO === ruleKeep? 0: keepLength - ruleKeep
 
   // PREDICATES
 
