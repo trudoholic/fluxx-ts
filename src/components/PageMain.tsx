@@ -20,6 +20,7 @@ const PageMain = () => {
     phase,
     players, bHand,
     gameOver,
+    handleAction,
   } = useGame()
 
   return (
@@ -125,6 +126,43 @@ const PageMain = () => {
           <PhaseEnd />
         ): null
       }
+      {/*---*/}
+      <Separator width="100%" borderColor={'green.800'} />
+      <HStack m={2}>
+        {/*--*/}
+        <Heading as="h1">
+          Set Draw:
+        </Heading>
+        <Button
+          colorPalette={"red"}
+          onClick={() => handleAction('R:1')}
+        >1</Button>
+        <Button
+          colorPalette={"red"}
+          onClick={() => handleAction('R:2')}
+        >2</Button>
+        <Button
+          colorPalette={"red"}
+          onClick={() => handleAction('R:3')}
+        >3</Button>
+        {/*--*/}
+        <Heading as="h1">
+          Set Play:
+        </Heading>
+        <Button
+          colorPalette={"red"}
+          // onClick={() => gameOutro()}
+        >1</Button>
+        <Button
+          colorPalette={"red"}
+          // onClick={() => gameOutro()}
+        >2</Button>
+        <Button
+          colorPalette={"red"}
+          // onClick={() => gameOutro()}
+        >3</Button>
+        {/*--*/}
+      </HStack>
       {/*---*/}
       <Separator width="100%" borderColor={'green.800'} />
       {/*<Code px={2}>{deck.join('|')}</Code>*/}

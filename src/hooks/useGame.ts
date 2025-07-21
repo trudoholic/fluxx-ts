@@ -110,6 +110,11 @@ const useGame = () => {
     autoSelect(Phase.Discard === phase? Zone.Hand: Zone.Keep, id)
   }
 
+  const handleAction = (id: string) => {
+    dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Drop}})
+    dispatch({type: Actions.UpdateDeck, payload: id})
+  }
+
   const endPhaseDraw = () => {
     dispatch({type: Actions.SetPhase, payload: Phase.Play})
     autoSelect(Zone.Hand)
@@ -197,6 +202,7 @@ const useGame = () => {
     // Destroy
     bDestroy, nDestroy, ruleKeep,
     endPhaseDestroy,
+    handleAction,
   }
 }
 
