@@ -51,6 +51,7 @@ export const Zone = {
   Drop: "Drop",
   Hand: "Hand",
   Keep: "Keep",
+  Rule: "Rule",
 } as const
 
 export type TZone = typeof Zone[keyof typeof Zone]

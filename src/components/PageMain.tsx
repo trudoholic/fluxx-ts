@@ -78,8 +78,9 @@ const PageMain = () => {
         </GridItem>
         <GridItem colSpan={1} bg="green.800" p={2}>
           <Heading as="h1" mb={2} color="green.600">
-            Stack
+            Rules
           </Heading>
+          <ZoneList zone={Zone.Rule}/>
         </GridItem>
         <GridItem colSpan={2} bg="green.800" p={2}>
           <Heading as="h1" mb={2} color="green.600">

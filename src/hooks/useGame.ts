@@ -111,7 +111,7 @@ const useGame = () => {
   }
 
   const handleAction = (id: string) => {
-    dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Drop}})
+    dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Rule}})
     dispatch({type: Actions.UpdateDeck, payload: id})
   }
 
