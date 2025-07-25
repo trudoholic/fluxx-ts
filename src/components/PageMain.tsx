@@ -20,7 +20,7 @@ const PageMain = () => {
     phase,
     players, bHand,
     gameOver,
-    handleAction,
+    handlePlay,
   } = useGame()
 
   return (
@@ -136,32 +136,32 @@ const PageMain = () => {
         </Heading>
         <Button
           colorPalette={"red"}
-          onClick={() => handleAction('R:1')}
-        >1</Button>
-        <Button
-          colorPalette={"red"}
-          onClick={() => handleAction('R:2')}
+          onClick={() => handlePlay('D:2')}
         >2</Button>
         <Button
           colorPalette={"red"}
-          onClick={() => handleAction('R:3')}
+          onClick={() => handlePlay('D:3')}
         >3</Button>
+        <Button
+          colorPalette={"red"}
+          onClick={() => handlePlay('D:4')}
+        >4</Button>
         {/*--*/}
         <Heading as="h1">
           Set Play:
         </Heading>
         <Button
           colorPalette={"red"}
-          // onClick={() => gameOutro()}
-        >1</Button>
-        <Button
-          colorPalette={"red"}
-          // onClick={() => gameOutro()}
+          onClick={() => handlePlay('P:2')}
         >2</Button>
         <Button
           colorPalette={"red"}
-          // onClick={() => gameOutro()}
+          onClick={() => handlePlay('P:3')}
         >3</Button>
+        <Button
+          colorPalette={"red"}
+          onClick={() => handlePlay('P:4')}
+        >4</Button>
         {/*--*/}
       </HStack>
       {/*---*/}

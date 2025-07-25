@@ -1,10 +1,11 @@
 export const ALL = 1024
 export const NO = -1
 
-const Suit = {
+export const Suit = {
   Blue: "Blue",
   Green: "Green",
   Red: "Red",
+  Rule: "Rule",
 } as const
 
 type TSuit = typeof Suit[keyof typeof Suit]
@@ -13,6 +14,7 @@ const suitColors = new Map<TSuit, string>([
   [Suit.Blue, "blue.500"],
   [Suit.Green, "green.500"],
   [Suit.Red, "red.500"],
+  [Suit.Rule, "orange.500"],
 ])
 
 export const suitColor = (suit: TSuit|undefined) => {
@@ -24,14 +26,19 @@ type TCardData = {
   name: string
   rank?: number
   suit?: TSuit
+  kind?: string
 }
 
 const range = (n: number) => Array.from(Array(n).keys())
 const rawList1: TCardData[] = range(52).map(i => ({ id: 'B:'+i, name: 'B '+i, rank: i, suit: Suit.Blue }))
 const rawList2: TCardData[] = [
-  { id: 'R:1', name: 'R 1', rank: 1, suit: Suit.Red },
-  { id: 'R:2', name: 'R 2', rank: 2, suit: Suit.Red },
-  { id: 'R:3', name: 'R 3', rank: 3, suit: Suit.Red },
+  { id: 'D:2', name: 'D 2', rank: 2, suit: Suit.Rule, kind: "Draw" },
+  { id: 'D:3', name: 'D 3', rank: 3, suit: Suit.Rule, kind: "Draw" },
+  { id: 'D:4', name: 'D 4', rank: 4, suit: Suit.Rule, kind: "Draw" },
+
+  { id: 'P:2', name: 'P 2', rank: 2, suit: Suit.Rule, kind: "Play" },
+  { id: 'P:3', name: 'P 3', rank: 3, suit: Suit.Rule, kind: "Play" },
+  { id: 'P:4', name: 'P 4', rank: 4, suit: Suit.Rule, kind: "Play" },
   // { id: 'G:1', name: 'G 1', rank: 1, suit: Suit.Green },
   // { id: 'G:2', name: 'G 2', rank: 2, suit: Suit.Green },
   // { id: 'G:3', name: 'G 3', rank: 3, suit: Suit.Green },

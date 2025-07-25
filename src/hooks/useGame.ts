@@ -5,6 +5,8 @@ import {type IState} from "../context/state"
 import {
   ALL, NO,
   type TZone, Zone,
+  Suit,
+  getCardData,
 } from "../data/cards"
 
 import {
@@ -99,9 +101,16 @@ const useGame = () => {
   }
 
   const handlePlay = (id: string) => {
-    dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Keep}})
-    dispatch({type: Actions.UpdateDeck, payload: id})
-    autoSelect(Zone.Hand, id)
+    const cardData = getCardData(id)
+    if (Suit.Rule === cardData.suit) {
+      dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Rule}})
+      dispatch({type: Actions.UpdateDeck, payload: id})
+    }
+    else {
+      dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Keep}})
+      dispatch({type: Actions.UpdateDeck, payload: id})
+      autoSelect(Zone.Hand, id)
+    }
   }
 
   const handleDrop = (id: string) => {
@@ -110,10 +119,7 @@ const useGame = () => {
     autoSelect(Phase.Discard === phase? Zone.Hand: Zone.Keep, id)
   }
 
-  const handleAction = (id: string) => {
-    dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Rule}})
-    dispatch({type: Actions.UpdateDeck, payload: id})
-  }
+  // const handleAction = (id: string) => { }
 
   const endPhaseDraw = () => {
     dispatch({type: Actions.SetPhase, payload: Phase.Play})
@@ -202,7 +208,7 @@ const useGame = () => {
     // Destroy
     bDestroy, nDestroy, ruleKeep,
     endPhaseDestroy,
-    handleAction,
+    // handleAction,
   }
 }
 
