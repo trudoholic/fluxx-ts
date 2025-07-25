@@ -20,7 +20,7 @@ const PageMain = () => {
     phase,
     players, bHand,
     gameOver,
-    handlePlay,
+    handlePlay, handleDropRules,
   } = useGame()
 
   return (
@@ -162,6 +162,14 @@ const PageMain = () => {
           colorPalette={"red"}
           onClick={() => handlePlay('P:4')}
         >4</Button>
+        {/*--*/}
+        <Heading as="h1">
+          Drop Rules
+        </Heading>
+        <Button
+          colorPalette={"red"}
+          onClick={() => handleDropRules()}
+        >X</Button>
         {/*--*/}
       </HStack>
       {/*---*/}

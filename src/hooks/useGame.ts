@@ -124,6 +124,13 @@ const useGame = () => {
     autoSelect(Phase.Discard === phase? Zone.Hand: Zone.Keep, id)
   }
 
+  const handleDropRules = () => {
+    const list = deckZone(Zone.Rule)
+    list.forEach(
+      dropId => dispatch({type: Actions.SetZone, payload: {id: dropId, player: 0, zone: Zone.Drop}})
+    )
+  }
+
   // const handleAction = (id: string) => { }
 
   const endPhaseDraw = () => {
@@ -211,7 +218,7 @@ const useGame = () => {
     setCntPlay, endPhasePlay, handlePlay,
     // Discard
     bDiscard, nDiscard, ruleHand,
-    endPhaseDiscard, handleDrop,
+    endPhaseDiscard, handleDrop, handleDropRules,
     // Destroy
     bDestroy, nDestroy, ruleKeep,
     endPhaseDestroy,
