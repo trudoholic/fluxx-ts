@@ -6,20 +6,32 @@ const PhaseDraw = () => {
   const {
     cntDraw, nDraw, setCntDraw, bDraw,
     handleDraw, endPhaseDraw,
+    drawLength, dropLength,
   } = useGame()
 
   return (
     <>
       <HStack m={2}>
         {
-          bDraw? (
-            <Button
-              colorPalette={"orange"}
-              onClick={() => {
-                handleDraw()
-                setCntDraw(cntDraw + 1)
-              }}
-            ><RiArrowRightSFill /></Button>
+          bDraw && (drawLength || dropLength)? (
+            //----------------------------------
+            !drawLength && dropLength? (
+              <Button
+                colorPalette={"red"}
+                onClick={() => {
+                  console.log("Reshuffle!")
+                }}
+              ><RiArrowRightSFill /></Button>
+            ): (
+              <Button
+                colorPalette={"orange"}
+                onClick={() => {
+                  handleDraw()
+                  setCntDraw(cntDraw + 1)
+                }}
+              ><RiArrowRightSFill /></Button>
+            )
+            //----------------------------------
           ): (
             <Button
               colorPalette={"green"}
@@ -28,7 +40,11 @@ const PhaseDraw = () => {
           )
         }
         <Heading as="h1">
-          {bDraw? `Draw: ${nDraw}`: 'End Phase Draw'}
+          {
+            bDraw && (drawLength || dropLength)? (
+              !drawLength && dropLength? 'Reshuffle': `Draw: ${nDraw}`
+            ): 'End Phase Draw'
+          }
         </Heading>
       </HStack>
     </>

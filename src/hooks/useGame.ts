@@ -95,9 +95,12 @@ const useGame = () => {
   }
 
   const handleDraw = () => {
-    const id: string = deck[0]
-    dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Hand}})
-    dispatch({type: Actions.UpdateDeck, payload: id})
+    const pile = deckZone(Zone.Draw)
+    if (pile.length) {
+      const id: string = pile[0]
+      dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Hand}})
+      dispatch({type: Actions.UpdateDeck, payload: id})
+    }
   }
 
   const handlePlay = (id: string) => {
@@ -164,6 +167,8 @@ const useGame = () => {
 
   const deckZone = (zone: TZone, player?: number) => deck.filter(id => inZone(id, zone, player ?? 0))
 
+  const drawLength = deckZone(Zone.Draw).length
+  const dropLength = deckZone(Zone.Drop).length
   const handLength = deckZone(Zone.Hand, curId).length
   const keepLength = deckZone(Zone.Keep, curId).length
 
@@ -210,19 +215,20 @@ const useGame = () => {
     eldestHand, curHand, nextHand,
     bActive, idActive, setActive,
     bEnabled,
-    // Draw
+    // --- Draw
     bDraw, nDraw, cntDraw, ruleDraw,
     setCntDraw, endPhaseDraw, handleDraw,
-    // Play
+    // --- Play
     bPlay, nPlay, cntPlay, rulePlay,
     setCntPlay, endPhasePlay, handlePlay,
-    // Discard
+    // --- Discard
     bDiscard, nDiscard, ruleHand,
     endPhaseDiscard, handleDrop, handleDropRules,
-    // Destroy
+    // --- Destroy
     bDestroy, nDestroy, ruleKeep,
     endPhaseDestroy,
     // handleAction,
+    drawLength, dropLength,
   }
 }
 
