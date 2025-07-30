@@ -92,6 +92,8 @@ export function resetDeck() {
   }
 }
 
+export const initDeck = resetDeck()
+
 // export function test() {
 //   console.log('cardList:', cardList)
 //   console.log('shuffle:', shuffle(cardList))

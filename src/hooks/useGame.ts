@@ -49,6 +49,13 @@ const useGame = () => {
     dispatch({type: Actions.SetCntDraw, payload: 0})
     dispatch({type: Actions.SetCntPlay, payload: 0})
     dispatch({type: Actions.SetPhase, payload: Phase.Draw})
+
+    // if (drawLength || dropLength) {
+    //   dispatch({type: Actions.SetPhase, payload: Phase.Draw})
+    // }
+    // else {
+    //   endPhaseDraw()
+    // }
   }
 
   const nextHand = () => {

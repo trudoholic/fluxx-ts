@@ -1,6 +1,7 @@
 import {
   type TCardZone,
   ALL, NO,
+  initDeck,
 } from "../data/cards"
 
 import {
@@ -30,8 +31,10 @@ export interface IState {
 }
 
 export const defaultState: IState = {
-  deck: [],
-  deckData: {},
+  deck: initDeck.deck,
+  // deck: [],
+  deckData: initDeck.deckData,
+  // deckData: {},
   idActive: "",
   idTarget: "",
   gameState: GameState.Intro,
