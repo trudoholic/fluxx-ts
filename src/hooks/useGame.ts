@@ -137,9 +137,15 @@ const useGame = () => {
   // const handleAction = (id: string) => { }
 
   const endPhaseDraw = () => {
-    dispatch({type: Actions.SetPhase, payload: Phase.Play})
-    autoSelect(Zone.Hand)
+    if (bPlay) {
+      dispatch({type: Actions.SetPhase, payload: Phase.Play})
+      autoSelect(Zone.Hand)
+    }
+    else {
+      endPhasePlay()
+    }
   }
+
   const endPhasePlay = () => {
     if (bDiscard) {
       dispatch({type: Actions.SetPhase, payload: Phase.Discard})
@@ -149,6 +155,7 @@ const useGame = () => {
       endPhaseDiscard()
     }
   }
+
   const endPhaseDiscard = () => {
     if (bDestroy) {
       dispatch({type: Actions.SetPhase, payload: Phase.Destroy})
@@ -158,6 +165,7 @@ const useGame = () => {
       endPhaseDestroy()
     }
   }
+
   const endPhaseDestroy = () => {
     dispatch({type: Actions.SetPhase, payload: Phase.End})
     setActive("")

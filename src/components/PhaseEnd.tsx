@@ -15,7 +15,7 @@ const PhaseEnd = () => {
           {curPlayer.name}
         </Heading>
         <Button
-          colorPalette={"green"}
+          colorPalette={"pink"}
           onClick={() => nextHand()}
         ><RiArrowRightSFill /></Button>
         <Heading as="h1">
