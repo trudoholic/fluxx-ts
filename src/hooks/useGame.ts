@@ -48,14 +48,7 @@ const useGame = () => {
   const handBegin = () => {
     dispatch({type: Actions.SetCntDraw, payload: 0})
     dispatch({type: Actions.SetCntPlay, payload: 0})
-    dispatch({type: Actions.SetPhase, payload: Phase.Draw})
-
-    // if (drawLength || dropLength) {
-    //   dispatch({type: Actions.SetPhase, payload: Phase.Draw})
-    // }
-    // else {
-    //   endPhaseDraw()
-    // }
+    dispatch({type: Actions.SetPhase, payload: Phase.Begin})
   }
 
   const nextHand = () => {
@@ -99,6 +92,17 @@ const useGame = () => {
     const list = deckZone(zone, curId).filter(id => id !== idPlay)
     const idx = list.length? list[0]: ""
     setActive(idx)
+  }
+
+  const handleBegin = () => {
+    dispatch({type: Actions.SetPhase, payload: Phase.Draw})
+
+    // if (drawLength || dropLength) {
+    //   dispatch({type: Actions.SetPhase, payload: Phase.Draw})
+    // }
+    // else {
+    //   endPhaseDraw()
+    // }
   }
 
   const handleDraw = () => {
@@ -230,6 +234,7 @@ const useGame = () => {
     eldestHand, curHand, nextHand,
     bActive, idActive, setActive,
     bEnabled,
+    handleBegin,
     // --- Draw
     bDraw, nDraw, cntDraw, ruleDraw,
     setCntDraw, endPhaseDraw, handleDraw,

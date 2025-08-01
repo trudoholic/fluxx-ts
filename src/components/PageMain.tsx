@@ -6,6 +6,7 @@ import {RiArrowRightSFill} from "react-icons/ri"
 import {Zone, ALL, NO} from "../data/cards"
 import {Phase} from "../data/game"
 import useGame from "../hooks/useGame"
+import PhaseBegin from "./PhaseBegin"
 import PhaseDraw from "./PhaseDraw"
 import PhasePlay from "./PhasePlay"
 import PhaseDiscard from "./PhaseDiscard"
@@ -115,7 +116,9 @@ const PageMain = () => {
       <Separator width="100%" borderColor={'green.800'} />
       {/*---*/}
       {
-        Phase.Draw === phase? (
+        Phase.Begin === phase? (
+          <PhaseBegin />
+        ): Phase.Draw === phase? (
           <PhaseDraw />
         ): Phase.Play === phase? (
           <PhasePlay />
