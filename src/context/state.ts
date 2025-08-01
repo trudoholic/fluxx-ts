@@ -44,7 +44,7 @@ export const defaultState: IState = {
   count: 0,
   nPlayers: 0,
   players: [],
-  ruleDraw: 4,
+  ruleDraw: 1,
   rulePlay: 1,
   ruleHand: NO,
   ruleKeep: NO,

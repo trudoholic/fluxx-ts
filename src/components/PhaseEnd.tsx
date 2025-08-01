@@ -12,7 +12,7 @@ const PhaseEnd = () => {
     <>
       <HStack m={2}>
         <Heading as="h1">
-          {curPlayer.name}
+          {'End Hand: ' + curPlayer.name}
         </Heading>
         <Button
           colorPalette={"pink"}

@@ -95,14 +95,12 @@ const useGame = () => {
   }
 
   const handleBegin = () => {
-    dispatch({type: Actions.SetPhase, payload: Phase.Draw})
-
-    // if (drawLength || dropLength) {
-    //   dispatch({type: Actions.SetPhase, payload: Phase.Draw})
-    // }
-    // else {
-    //   endPhaseDraw()
-    // }
+    if (drawLength || dropLength) {
+      dispatch({type: Actions.SetPhase, payload: Phase.Draw})
+    }
+    else {
+      endPhaseDraw()
+    }
   }
 
   const handleDraw = () => {
