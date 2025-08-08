@@ -73,7 +73,7 @@ export type TCardZone = {
 const zoneMap = new Map<string, TCardZone>(rawList.map(it => [it.id, {id: it.id, player: 0, zone: Zone.Draw}]))
 // const getZoneData = (id: string) => zoneMap.get(id)
 
-const shuffle = (list: string[], debug = false) => {
+export const shuffle = (list: string[], debug = false) => {
   const src = [...list]
   if (debug) return src
 
@@ -85,6 +85,7 @@ const shuffle = (list: string[], debug = false) => {
   return result
 }
 
+export type TDeck = {deck: string[], deckData: {[id: string]: TCardZone}}
 export function resetDeck() {
   return {
     deck: shuffle(cardList, true),

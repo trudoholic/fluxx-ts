@@ -44,10 +44,10 @@ export const defaultState: IState = {
   count: 0,
   nPlayers: 0,
   players: [],
-  ruleDraw: 1,
-  rulePlay: 1,
+  ruleDraw: 3,
+  rulePlay: 3,
   ruleHand: NO,
-  ruleKeep: NO,
+  ruleKeep: 1,
   eldestHand: 0,
   curHand: 0,
 }

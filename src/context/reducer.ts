@@ -1,5 +1,5 @@
 import {
-  type TCardZone, resetDeck,
+  type TCardZone, type TDeck, resetDeck,
 } from "../data/cards"
 
 import {
@@ -11,6 +11,7 @@ import {type IState} from "./state"
 
 export const Actions = {
   ResetDeck: 'ResetDeck',
+  ReshuffleDeck: 'ReshuffleDeck',
   UpdateDeck: 'UpdateDeck',
   SetActive: 'SetActive',
   SetGameState: 'SetGameState',
@@ -26,6 +27,7 @@ export const Actions = {
 
 export type TAction =
   | { type: 'ResetDeck' }
+  | { type: 'ReshuffleDeck', payload: TDeck }
   | { type: 'UpdateDeck', payload: string }
   | { type: 'SetActive', payload: string }
   | { type: 'SetGameState', payload: TGameState }
@@ -43,10 +45,11 @@ export const reducer = (state: IState, action: TAction): IState => {
 
     case Actions.ResetDeck: {
       const o = resetDeck()
-      return { ...state,
-        deck: o.deck,
-        deckData: o.deckData,
-      }
+      return { ...state, deck: o.deck, deckData: o.deckData }
+    }
+    case Actions.ReshuffleDeck: {
+      const ap = action.payload
+      return { ...state, deck: ap.deck, deckData: ap.deckData }
     }
     case Actions.UpdateDeck: {
       const ap = action.payload

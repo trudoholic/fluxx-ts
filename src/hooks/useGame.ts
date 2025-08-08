@@ -6,7 +6,7 @@ import {
   ALL, NO,
   type TZone, Zone,
   Suit,
-  getCardData,
+  getCardData, shuffle,
 } from "../data/cards"
 
 import {
@@ -180,6 +180,17 @@ const useGame = () => {
     setActive("")
   }
 
+  const reshuffle = () => {
+    const dropPile = deck.filter(id => Zone.Drop === deckData[id].zone)
+    const restPile = deck.filter(id => Zone.Drop !== deckData[id].zone)
+    const newDeck = [...shuffle(dropPile), ...restPile]
+    const newData = structuredClone(deckData)
+    for (const id in newData) {
+      if (dropPile.includes(id)) newData[id].zone = Zone.Draw
+    }
+    dispatch({type: Actions.ReshuffleDeck, payload: {deck: newDeck, deckData: newData} })
+  }
+
   // FUNCTIONS
 
   const deckZone = (zone: TZone, player?: number) => deck.filter(id => inZone(id, zone, player ?? 0))
@@ -247,6 +258,7 @@ const useGame = () => {
     endPhaseDestroy,
     // handleAction,
     drawLength, dropLength,
+    reshuffle,
   }
 }
 

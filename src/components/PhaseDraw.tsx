@@ -7,6 +7,7 @@ const PhaseDraw = () => {
     cntDraw, nDraw, setCntDraw, bDraw,
     handleDraw, endPhaseDraw,
     drawLength, dropLength,
+    reshuffle,
   } = useGame()
 
   return (
@@ -19,7 +20,7 @@ const PhaseDraw = () => {
               <Button
                 colorPalette={"red"}
                 onClick={() => {
-                  console.log("Reshuffle!")
+                  reshuffle()
                 }}
               ><RiArrowRightSFill /></Button>
             ): (
