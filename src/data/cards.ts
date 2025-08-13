@@ -21,12 +21,20 @@ export const suitColor = (suit: TSuit|undefined) => {
   return (suit? suitColors.get(suit): "gray.900")
 }
 
+export const Kind = {
+  Draw: "Draw",
+  Play: "Play",
+  Random: "Random",
+} as const
+
+type TKind= typeof Kind[keyof typeof Kind]
+
 type TCardData = {
   id: string
   name: string
   rank?: number
   suit?: TSuit
-  kind?: string
+  kind?: TKind
 }
 
 const range = (n: number) => Array.from(Array(n).keys())
