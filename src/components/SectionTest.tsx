@@ -45,6 +45,14 @@ const SectionTest = () => {
         >4</Button>
         {/*--*/}
         <Heading as="h1">
+          Misc
+        </Heading>
+        <Button
+          colorPalette={"red"}
+          onClick={() => handlePlay('RND')}
+        >RND</Button>
+        {/*--*/}
+        <Heading as="h1">
           Drop Rules
         </Heading>
         <Button
