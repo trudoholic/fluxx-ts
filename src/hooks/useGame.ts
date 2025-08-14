@@ -6,6 +6,7 @@ import {
   ALL, NO,
   type TZone, Zone,
   Suit,
+  type TKind, Kind,
   getCardData, shuffle,
 } from "../data/cards"
 
@@ -54,7 +55,7 @@ const useGame = () => {
   const nextHand = () => {
     let n = curHand + 1
     if (nPlayers === n) {
-      console.log('Round')
+      console.log('# Round')
       n = 0
     }
     dispatch({type: Actions.SetCurHand, payload: n})
@@ -95,6 +96,10 @@ const useGame = () => {
   }
 
   const handleBegin = () => {
+    //
+    console.log(curPlayer.name)
+    console.log(hasRule(Zone.Rule, Kind.Random))
+    //
     if (drawLength || dropLength) {
       dispatch({type: Actions.SetPhase, payload: Phase.Draw})
     }
@@ -230,6 +235,10 @@ const useGame = () => {
   function inZone(id: string, zone: TZone, player: number = 0) {
     const data = deckData[id]
     return data.zone === zone && data.player === player
+  }
+
+  const hasRule = (zone: TZone, kind: TKind) => {
+    return deckZone(zone).some(i => kind === getCardData(i).kind)
   }
 
   // const isKind = (kind: string, id: string) => kind === getCardData(id).kind

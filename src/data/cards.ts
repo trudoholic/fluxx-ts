@@ -27,7 +27,7 @@ export const Kind = {
   Random: "Random",
 } as const
 
-type TKind= typeof Kind[keyof typeof Kind]
+export type TKind= typeof Kind[keyof typeof Kind]
 
 type TCardData = {
   id: string
