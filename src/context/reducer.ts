@@ -27,7 +27,7 @@ export const Actions = {
   SetPlayer: 'SetPlayer',
   SetPlayers: 'SetPlayers',
   SetSpell: 'SetSpell',
-  // SetSpells: 'SetSpells',
+  SetSpells: 'SetSpells',
   SetZone: 'SetZone',
 } as const
 
@@ -45,6 +45,7 @@ export type TAction =
   | { type: 'SetPlayer', payload: Partial<TPlayer> }
   | { type: 'SetPlayers', payload: TPlayer[] }
   | { type: 'SetSpell', payload: Partial<TSpell> }
+  | { type: 'SetSpells', payload: Partial<TSpell> }
   | { type: 'SetZone', payload: TCardZone }
 
 export const reducer = (state: IState, action: TAction): IState => {
@@ -99,6 +100,12 @@ export const reducer = (state: IState, action: TAction): IState => {
       const ap = action.payload
       return { ...state,
         spells: [...state.spells.map(p => ( p.id === ap.id? {...p, ...ap}: p ))]
+      }
+    }
+    case Actions.SetSpells: {
+      const ap = action.payload
+      return { ...state,
+        spells: [...state.spells.map(p => ({...p, ...ap}))]
       }
     }
     case Actions.SetZone: {

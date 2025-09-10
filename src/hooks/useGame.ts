@@ -48,6 +48,7 @@ const useGame = () => {
   }
 
   const handBegin = () => {
+    dispatch({type: Actions.SetSpells, payload: {tapped: false}})
     dispatch({type: Actions.SetCntDraw, payload: 0})
     dispatch({type: Actions.SetCntPlay, payload: 0})
     dispatch({type: Actions.SetPhase, payload: Phase.Begin})
