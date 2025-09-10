@@ -2,6 +2,7 @@ import {
   Separator
 } from "@chakra-ui/react"
 import SectionRules from "./SectionRules"
+import SectionSpells from "./SectionSpells"
 import SectionCommon from "./SectionCommon"
 import SectionFlow from "./SectionFlow"
 import SectionPhase from "./SectionPhase"
@@ -14,6 +15,7 @@ const PageMain = () => {
   return (
     <>
       <SectionRules/>
+      <SectionSpells/>
       <SectionCommon/>
       <Separator width="100%" borderColor={'green.800'} />
       <SectionFlow/>

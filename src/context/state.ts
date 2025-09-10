@@ -1,6 +1,7 @@
 import {
   type TCardZone,
-  ALL, NO,
+  // ALL,
+  NO,
   initDeck,
 } from "../data/cards"
 
