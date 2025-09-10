@@ -1,6 +1,7 @@
 import {
   Button, Heading, HStack
 } from "@chakra-ui/react"
+import {type TSpell, spells} from "../data/spells"
 import useGame from "../hooks/useGame"
 
 const SectionSpells = () => {
@@ -14,12 +15,12 @@ const SectionSpells = () => {
         <Heading as="h1" color="green.600">
           Spells:
         </Heading>
-        {[1,2,3,4,5].map(it => (
+        {spells.map((spell: TSpell) => (
           <Button
-            key={it}
+            key={spell.id}
             colorPalette={"red"}
             onClick={() => handlePlay('D:2')}
-          >{it}</Button>
+          >{spell.name}</Button>
         ))}
       </HStack>
     </>
