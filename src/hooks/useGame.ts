@@ -25,6 +25,7 @@ const useGame = () => {
     count,
     nPlayers, players, eldestHand, curHand,
     idActive,
+    spells,
   } = state as IState
 
   const curId = ((eldestHand + curHand) % nPlayers) + 1
@@ -268,6 +269,7 @@ const useGame = () => {
     // handleAction,
     drawLength, dropLength,
     reshuffle,
+    spells,
   }
 }
 

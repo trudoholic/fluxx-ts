@@ -11,6 +11,11 @@ import {
   type TPlayer,
 } from "../data/game"
 
+import {
+  type TSpell,
+  spells,
+} from "../data/spells"
+
 export interface IState {
   deck: string[]
   deckData: {[key: string]: TCardZone}
@@ -29,6 +34,7 @@ export interface IState {
   ruleKeep: number
   eldestHand: number
   curHand: number
+  spells: TSpell[]
 }
 
 export const defaultState: IState = {
@@ -51,4 +57,5 @@ export const defaultState: IState = {
   ruleKeep: NO,
   eldestHand: 0,
   curHand: 0,
+  spells: spells,
 }
