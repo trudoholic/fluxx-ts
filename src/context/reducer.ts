@@ -9,6 +9,10 @@ import {
 } from "../data/game"
 import {type IState} from "./state"
 
+import {
+  type TSpell,
+} from "../data/spells"
+
 export const Actions = {
   ResetDeck: 'ResetDeck',
   ReshuffleDeck: 'ReshuffleDeck',
@@ -22,6 +26,8 @@ export const Actions = {
   SetCurHand: 'SetCurHand',
   SetPlayer: 'SetPlayer',
   SetPlayers: 'SetPlayers',
+  SetSpell: 'SetSpell',
+  // SetSpells: 'SetSpells',
   SetZone: 'SetZone',
 } as const
 
@@ -38,6 +44,7 @@ export type TAction =
   | { type: 'SetCurHand', payload: number }
   | { type: 'SetPlayer', payload: Partial<TPlayer> }
   | { type: 'SetPlayers', payload: TPlayer[] }
+  | { type: 'SetSpell', payload: Partial<TSpell> }
   | { type: 'SetZone', payload: TCardZone }
 
 export const reducer = (state: IState, action: TAction): IState => {
@@ -86,6 +93,12 @@ export const reducer = (state: IState, action: TAction): IState => {
       const n = action.payload.length, rnd = Math.floor(Math.random() * n)
       return { ...state,
         curHand: 0, eldestHand: rnd, nPlayers: n, players: action.payload
+      }
+    }
+    case Actions.SetSpell: {
+      const ap = action.payload
+      return { ...state,
+        spells: [...state.spells.map(p => ( p.id === ap.id? {...p, ...ap}: p ))]
       }
     }
     case Actions.SetZone: {

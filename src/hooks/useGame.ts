@@ -197,6 +197,10 @@ const useGame = () => {
     dispatch({type: Actions.ReshuffleDeck, payload: {deck: newDeck, deckData: newData} })
   }
 
+  const tapSpell = (id: string) => {
+    dispatch({type: Actions.SetSpell, payload: {id, tapped: true}})
+  }
+
   // FUNCTIONS
 
   const deckZone = (zone: TZone, player?: number) => deck.filter(id => inZone(id, zone, player ?? 0))
@@ -269,7 +273,7 @@ const useGame = () => {
     // handleAction,
     drawLength, dropLength,
     reshuffle,
-    spells,
+    spells, tapSpell,
   }
 }
 

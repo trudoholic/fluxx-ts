@@ -5,7 +5,7 @@ import useGame from "../hooks/useGame"
 
 const SectionSpells = () => {
   const {
-    spells,
+    spells, tapSpell,
   } = useGame()
 
   return (
@@ -23,6 +23,7 @@ const SectionSpells = () => {
             onClick={() => {
               console.log('Click:')
               console.log(spell)
+              tapSpell(spell.id)
             }}
           >{spell.name}</Button>
         ))}
