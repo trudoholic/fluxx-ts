@@ -38,12 +38,12 @@ type TCardData = {
 }
 
 const range = (n: number) => Array.from(Array(n).keys())
-const rawList1: TCardData[] = range(9).map(i => ({ id: 'B:'+i, name: 'B '+i, rank: i, suit: Suit.Blue }))
+const rawList1: TCardData[] = range(1).map(i => ({ id: 'B:'+i, name: 'B '+i, rank: i, suit: Suit.Blue }))
 const rawList2: TCardData[] = [
   { id: 'RND', name: 'RND', suit: Suit.Rule, kind: Kind.Random },
-  // { id: 'D:2', name: 'D 2', rank: 2, suit: Suit.Rule, kind: "Draw" },
-  // { id: 'D:3', name: 'D 3', rank: 3, suit: Suit.Rule, kind: "Draw" },
-  // { id: 'D:4', name: 'D 4', rank: 4, suit: Suit.Rule, kind: "Draw" },
+  { id: 'D:2', name: 'D 2', rank: 2, suit: Suit.Rule, kind: "Draw" },
+  { id: 'D:3', name: 'D 3', rank: 3, suit: Suit.Rule, kind: "Draw" },
+  { id: 'D:4', name: 'D 4', rank: 4, suit: Suit.Rule, kind: "Draw" },
 
   // { id: 'P:2', name: 'P 2', rank: 2, suit: Suit.Rule, kind: "Play" },
   // { id: 'P:3', name: 'P 3', rank: 3, suit: Suit.Rule, kind: "Play" },

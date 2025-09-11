@@ -13,7 +13,7 @@ import {
 
 import {
   type TSpell,
-  spells,
+  // spells,
 } from "../data/spells"
 
 export interface IState {
@@ -57,5 +57,5 @@ export const defaultState: IState = {
   ruleKeep: NO,
   eldestHand: 0,
   curHand: 0,
-  spells: spells,
+  spells: [],
 }

@@ -14,6 +14,7 @@ import {
 } from "../data/spells"
 
 export const Actions = {
+  AddSpell: 'AddSpell',
   ResetDeck: 'ResetDeck',
   ReshuffleDeck: 'ReshuffleDeck',
   UpdateDeck: 'UpdateDeck',
@@ -32,6 +33,7 @@ export const Actions = {
 } as const
 
 export type TAction =
+  | { type: 'AddSpell', payload: TSpell }
   | { type: 'ResetDeck' }
   | { type: 'ReshuffleDeck', payload: TDeck }
   | { type: 'UpdateDeck', payload: string }
@@ -51,6 +53,11 @@ export type TAction =
 export const reducer = (state: IState, action: TAction): IState => {
   switch (action.type) {
 
+    case Actions.AddSpell: {
+      return { ...state,
+        spells: [...state.spells, action.payload]
+      }
+    }
     case Actions.ResetDeck: {
       const o = resetDeck()
       return { ...state, deck: o.deck, deckData: o.deckData }

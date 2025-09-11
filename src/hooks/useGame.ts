@@ -14,6 +14,10 @@ import {
   GameState, Phase, getPlayers, dieRoll,
 } from "../data/game"
 
+import {
+  getSpell,
+} from "../data/spells"
+
 const useGame = () => {
   const { state, dispatch } = useAppContext()
   const {
@@ -121,6 +125,7 @@ const useGame = () => {
 
   const handlePlay = (id: string) => {
     const cardData = getCardData(id)
+    // console.log('->', id, cardData)
     if (Suit.Rule === cardData.suit) {
       const list = deckZone(Zone.Rule).filter(i => cardData.kind === getCardData(i).kind)
       list.forEach(
@@ -129,6 +134,7 @@ const useGame = () => {
 
       dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Rule}})
       dispatch({type: Actions.UpdateDeck, payload: id})
+      dispatch({type: Actions.AddSpell, payload: getSpell(id, id)})
     }
     else {
       dispatch({type: Actions.SetZone, payload: {id, player: curId, zone: Zone.Keep}})
