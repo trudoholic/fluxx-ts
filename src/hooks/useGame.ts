@@ -128,9 +128,7 @@ const useGame = () => {
     // console.log('->', id, cardData)
     if (Suit.Rule === cardData.suit) {
       const list = deckZone(Zone.Rule).filter(i => cardData.kind === getCardData(i).kind)
-      list.forEach(
-        dropId => dispatch({type: Actions.SetZone, payload: {id: dropId, player: 0, zone: Zone.Drop}})
-      )
+      dropList(list)
 
       dispatch({type: Actions.SetZone, payload: {id, player: 0, zone: Zone.Rule}})
       dispatch({type: Actions.UpdateDeck, payload: id})
@@ -151,9 +149,14 @@ const useGame = () => {
 
   const handleDropRules = () => {
     const list = deckZone(Zone.Rule)
+    dropList(list)
+  }
+
+  const dropList = (list: string[]) => {
     list.forEach(
       dropId => dispatch({type: Actions.SetZone, payload: {id: dropId, player: 0, zone: Zone.Drop}})
     )
+    dispatch({type: Actions.DropSpells, payload: list})
   }
 
   // const handleAction = (id: string) => { }

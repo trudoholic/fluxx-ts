@@ -15,6 +15,7 @@ import {
 
 export const Actions = {
   AddSpell: 'AddSpell',
+  DropSpells: 'DropSpells',
   ResetDeck: 'ResetDeck',
   ReshuffleDeck: 'ReshuffleDeck',
   UpdateDeck: 'UpdateDeck',
@@ -34,6 +35,7 @@ export const Actions = {
 
 export type TAction =
   | { type: 'AddSpell', payload: TSpell }
+  | { type: 'DropSpells', payload: string[] }
   | { type: 'ResetDeck' }
   | { type: 'ReshuffleDeck', payload: TDeck }
   | { type: 'UpdateDeck', payload: string }
@@ -56,6 +58,12 @@ export const reducer = (state: IState, action: TAction): IState => {
     case Actions.AddSpell: {
       return { ...state,
         spells: [...state.spells, action.payload]
+      }
+    }
+    case Actions.DropSpells: {
+      const list = action.payload
+      return { ...state,
+        spells: [...state.spells.filter(it => !list.includes(it.id))]
       }
     }
     case Actions.ResetDeck: {
